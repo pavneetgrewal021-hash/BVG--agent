@@ -1,0 +1,26 @@
+# Environment variables
+.env
+.env.*
+
+# Secrets
+credentials.json
+token.json
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# Node modules
+node_modules/
+
+# Logs
+*.log
+
+# Build folders
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db

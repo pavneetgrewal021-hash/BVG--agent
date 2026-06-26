@@ -1,0 +1,11 @@
+{
+  "required_docs": [
+    "aadhaar",
+    "pan",
+    "10th_certificate"
+  ],
+  "drive_root_folder": "BGV_Candidates",
+  "folder_name_pattern": "{candidate_id}-{name}-{date}",
+  "file_name_pattern": "{name}_{doc_type}",
+  "drive_source_folder": ""
+}
