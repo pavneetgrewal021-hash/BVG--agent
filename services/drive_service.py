@@ -5,6 +5,7 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 from datetime import datetime
 import os
+import re
 import mimetypes
 import json
 
@@ -102,8 +103,20 @@ def create_folder(service, folder_name, parent_id=None):
     return folder["id"]
 
 
+def escape_query_value(value):
+    """Escapes a value for a Drive query string, so names like O'Brien don't break it."""
+    return str(value).replace("\\", "\\\\").replace("'", "\\'")
+
+
+def file_name_matches(email_prefix, file_name):
+    """True if email_prefix appears in file_name as a whole token.
+    'raj' matches 'raj_docs.pdf' and 'docs-raj.pdf' but not 'rajesh_docs.pdf'."""
+    pattern = r"(^|[^a-z0-9])" + re.escape(email_prefix.lower()) + r"($|[^a-z0-9])"
+    return re.search(pattern, file_name.lower()) is not None
+
+
 def get_or_create_folder(service, folder_name, parent_id=None):
-    query = f"name='{folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+    query = f"name='{escape_query_value(folder_name)}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
     if parent_id:
         query += f" and '{parent_id}' in parents"
 
@@ -176,7 +189,7 @@ def get_pdf_from_drive_folder(candidate_email, source_folder_name):
         service = get_drive_service()
 
         # Find source folder
-        query = f"name='{source_folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+        query = f"name='{escape_query_value(source_folder_name)}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
         results = service.files().list(q=query, fields="files(id, name)").execute()
         folders = results.get("files", [])
 
@@ -194,17 +207,15 @@ def get_pdf_from_drive_folder(candidate_email, source_folder_name):
         if not files:
             return None
 
-       
-        matched_file = None
-        for f in files:
-            if email_prefix.lower() in f["name"].lower():
-                matched_file = f
-                break
+        # Never guess: a wrong match would file another candidate's documents under this one
+        matches = [f for f in files if file_name_matches(email_prefix, f["name"])]
 
-        if not matched_file:
-            matched_file = files[0]
+        if len(matches) != 1:
+            print(f"Drive source: {len(matches)} files match '{email_prefix}', expected exactly 1")
+            return None
 
-      
+        matched_file = matches[0]
+
         request = service.files().get_media(fileId=matched_file["id"])
         file_bytes = io.BytesIO()
         downloader = MediaIoBaseDownload(file_bytes, request)

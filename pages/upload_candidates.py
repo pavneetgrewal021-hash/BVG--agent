@@ -15,32 +15,6 @@ def create_batch(batch_name, total):
     conn.close()
     return batch_id
 
-def create_batch_tables():
-    conn = get_connection()
-    cursor = conn.cursor()
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batches (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            batch_name TEXT,
-            uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            total_candidates INTEGER DEFAULT 0,
-            completed INTEGER DEFAULT 0,
-            partial INTEGER DEFAULT 0,
-            failed INTEGER DEFAULT 0
-        )
-    """)
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batch_candidates (
-            batch_id INTEGER,
-            candidate_id TEXT,
-            FOREIGN KEY (batch_id) REFERENCES batches(id)
-        )
-    """)
-    conn.commit()
-    conn.close()
-
-create_batch_tables()
-
 
 st.title("📤 Upload Candidates")
 

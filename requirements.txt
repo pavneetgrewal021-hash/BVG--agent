@@ -1,7 +1,9 @@
 streamlit
-pandas
+pandas>=2.1
 openpyxl
-sqlalchemy
+pymupdf
+pytesseract
+Pillow
 google-auth
 google-auth-oauthlib
 google-auth-httplib2

@@ -169,10 +169,23 @@ def save_split_documents(pdf_path, page_results, output_dir):
     src.close()
     return saved
 
-def classify_pdf_from_bytes(pdf_bytes, temp_path="temp_combined.pdf"):
-    """Takes raw PDF bytes (e.g. from Gmail), writes a temp file, classifies it."""
+def classify_pdf_from_bytes(pdf_bytes, temp_path=None):
+    """Takes raw PDF bytes (e.g. from Gmail), writes a temp file, classifies it.
+    The caller must delete temp_path when done."""
+    import os
+    import tempfile
+
+    # A fresh file per run, so two users processing at once can't overwrite each other's PDF
+    if temp_path is None:
+        fd, temp_path = tempfile.mkstemp(prefix="bgv_", suffix=".pdf")
+        os.close(fd)
+
     with open(temp_path, "wb") as f:
         f.write(pdf_bytes)
 
-    page_results = classify_pdf_pages(temp_path)
+    try:
+        page_results = classify_pdf_pages(temp_path)
+    except Exception:
+        os.remove(temp_path)  # corrupt PDF: don't leave candidate data on disk
+        raise
     return page_results, temp_path

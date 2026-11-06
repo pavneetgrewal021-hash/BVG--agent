@@ -39,41 +39,6 @@ def get_candidate_documents(candidate_id):
     conn.close()
     return data
 
-def create_batch_tables():
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batches (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            batch_name TEXT,
-            uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            total_candidates INTEGER DEFAULT 0,
-            completed INTEGER DEFAULT 0,
-            partial INTEGER DEFAULT 0,
-            failed INTEGER DEFAULT 0
-        )
-    """)
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batch_candidates (
-            batch_id INTEGER,
-            candidate_id TEXT,
-            FOREIGN KEY (batch_id) REFERENCES batches(id)
-        )
-    """)
-
-
-    try:
-        cursor.execute("ALTER TABLE documents ADD COLUMN uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    except:
-        pass
-
-    conn.commit()
-    conn.close()
-
-create_batch_tables()
-
 
 st.title("📜 Batch History")
 
