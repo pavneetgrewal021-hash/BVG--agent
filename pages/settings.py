@@ -3,6 +3,7 @@ import json
 import os
 from services.gmail_service import get_gmail_service
 from services.drive_service import get_drive_service, get_or_create_folder
+from services.llm_client import check_model
 
 SETTINGS_FILE = "data/settings.json"
 
@@ -103,12 +104,37 @@ file_pattern = st.text_input(
 st.caption(f"Example folder: **{folder_pattern.replace('{candidate_id}', 'C101').replace('{name}', 'Satwik').replace('{date}', '2026-06-24')}**")
 
 
+st.subheader("🧠 Document Classifier")
+st.caption("The local LLM runs on this machine through Ollama, so documents never leave it. "
+           "If Ollama is not running, pages fall back to the keyword rules automatically.")
+
+classifier = st.radio(
+    "Classify pages with",
+    options=["llm", "keyword"],
+    format_func=lambda c: "Local LLM (Ollama)" if c == "llm" else "Keyword rules",
+    index=0 if settings.get("classifier", "keyword") == "llm" else 1,
+    horizontal=True
+)
+
+llm_model = st.text_input(
+    "Ollama model",
+    value=settings.get("llm_model", "qwen3:4b"),
+    help="Chosen by evaluation: qwen3:4b scored best on the dev set (see eval/README.md)"
+)
+
+if st.button("Test LLM connection"):
+    ok, message = check_model({**settings, "llm_model": llm_model})
+    (st.success if ok else st.error)(message)
+
+
 if st.button("💾 Save Settings"):
     settings["required_docs"]        = selected_docs
     settings["drive_root_folder"]    = drive_root
     settings["drive_source_folder"]  = drive_source
     settings["folder_name_pattern"]  = folder_pattern
     settings["file_name_pattern"]    = file_pattern
+    settings["classifier"]           = classifier
+    settings["llm_model"]            = llm_model
     save_settings(settings)
     st.success("Settings saved successfully!")
 

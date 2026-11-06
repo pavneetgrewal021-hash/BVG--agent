@@ -1,0 +1,869 @@
+{
+  "summary": {
+    "method": "llm",
+    "model": "qwen3:4b",
+    "split": "test",
+    "prompt_version": "v2",
+    "candidates": 10,
+    "pages": 47,
+    "page_accuracy": 0.9787234042553191,
+    "page_accuracy_digital": 0.9583333333333334,
+    "page_accuracy_scanned": 1.0,
+    "pages_digital": 24,
+    "pages_scanned": 23,
+    "macro_f1": 0.9828571428571429,
+    "documents": 45,
+    "documents_recovered": 40,
+    "status_accuracy": 1.0,
+    "false_completed": 0,
+    "seconds_per_page": 3.6187313021262217,
+    "fallback_pages": 0,
+    "evidence_found_rate": 0.9787234042553191,
+    "calibration": [
+      {
+        "band": "0.00-0.70",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.70-0.90",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.90-0.97",
+        "pages": 43,
+        "accuracy": 0.9767441860465116
+      },
+      {
+        "band": "0.97-1.00",
+        "pages": 4,
+        "accuracy": 1.0
+      }
+    ]
+  },
+  "per_class": {
+    "10th_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "12th_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "aadhaar": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "bank_statement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "bgv_consent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "court_record": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "degree_certificate": {
+      "precision": 1.0,
+      "recall": 0.75,
+      "f1": 0.8571428571428571,
+      "support": 4
+    },
+    "driving_license": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "experience_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "form_16": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "marksheet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "offer_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "pan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "passport": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "payslip": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "police_verification": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "provisional_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "relieving_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "unknown": {
+      "precision": 0.6666666666666666,
+      "recall": 1.0,
+      "f1": 0.8,
+      "support": 2
+    },
+    "voter_id": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    }
+  },
+  "confusions": [
+    [
+      "degree_certificate",
+      "unknown",
+      1
+    ]
+  ],
+  "candidates": [
+    {
+      "candidate": "TEST06",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 21.67,
+      "docs": 4,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "TEST07",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 22.16,
+      "docs": 4,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST08",
+      "true_status": "Failed",
+      "pred_status": "Failed",
+      "seconds": 10.76,
+      "docs": 4,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "TEST09",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 17.5,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST10",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 15.34,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST11",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 14.98,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST12",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 22.91,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST13",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 21.81,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST14",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 11.99,
+      "docs": 3,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "TEST15",
+      "true_status": "Failed",
+      "pred_status": "Failed",
+      "seconds": 10.97,
+      "docs": 5,
+      "docs_recovered": 2
+    }
+  ],
+  "pages": [
+    {
+      "candidate": "TEST06",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Council for the Indian School Certificate Examinations Indian Certificate of Secondary Education Examination 2011 Pass Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "The Senate of Riverside Technical University",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 0,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Unique Identification Authority of India Government of India Enrolment No.: 4805/94980/65585 To Aarav Nair S/O Gurpreet Nair House No. 276, Sector 30, Pune - 411048 Mobile: XXXXXX1685 Your Aadhaar No. : 2499 5314 2370 VID : 6252845618634056 Date of Birth: 03/11/1996 Gender: Male Aadhaar is a proof of identity, not of citizenship. Download Date: 30/11/2018 SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Maharashtra State Board of Secondary and Higher Secondary Education",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 3,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 4,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 0,
+      "true": "offer_letter",
+      "pred": "offer_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Letter of Offer",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 1,
+      "true": "relieving_letter",
+      "pred": "relieving_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Saffron Fintech Services Ref: HR/REL/E97837",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 2,
+      "true": "form_16",
+      "pred": "form_16",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Form 16 - Part B (Annexure)",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Salary Slip for the month of October 2019",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 0,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 1,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Maharashtra State Board of Secondary and Higher Secondary Education Matriculation Examination 2013 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Senior Secondary Certificate Examination (Class XII) 2015",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN The Senate of Western Ghats University hereby confers the degree of Bachelor of Technology (Computer Science and Engineering) upon M. Joshi who has fulfilled all the requirements for the said degree in 2019. Date: 06/02/2020 Certificate No.: 38114620 Registrar",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 4,
+      "true": "provisional_certificate",
+      "pred": "provisional_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Provisional Degree Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Unique Identification Authority of India Government of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Punjab School Education Board Matriculation Examination 2012 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 3,
+      "true": "driving_license",
+      "pred": "driving_license",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN FORM 7 Licence to drive motor vehicles",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 4,
+      "true": "bank_statement",
+      "pred": "bank_statement",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Coastal Commercial Bank Statement of Account",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 0,
+      "true": "voter_id",
+      "pred": "voter_id",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-EPIC",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 3,
+      "true": "experience_letter",
+      "pred": "experience_letter",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Experience Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 4,
+      "true": "court_record",
+      "pred": "court_record",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Litigation Database Search",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 2,
+      "true": "bgv_consent",
+      "pred": "bgv_consent",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Authorization for Background Check",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Punjab School Education Board Matriculation Examination 2015 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 4,
+      "true": "police_verification",
+      "pred": "police_verification",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Chandigarh Police Character and Antecedents Verification Report",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 0,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "PASSPORT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Council for the Indian School Certificate Examinations Indian School Certificate Examination 2018 Year 12 Pass Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN The Senate of Northern Plains University hereby confers the degree of Bachelor of Technology (Computer Science and Engineering) upon Kavya Reddy who has fulfilled all the requirements for the said degree in 2022. Date: 12/02/2023 Certificate No.: 93226951 Registrar SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 4,
+      "true": "offer_letter",
+      "pred": "offer_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Letter of Offer",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Unique Identification Authority of India Government of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 1,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian Certificate of Secondary Education Examination 2013",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 0,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian School Certificate Examination 2013 Year 12 Pass Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 1,
+      "true": "degree_certificate",
+      "pred": "unknown",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Salary Slip for the month of February 2020",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 4,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Salary Slip for the month of January 2020",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    }
+  ]
+}

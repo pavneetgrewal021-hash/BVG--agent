@@ -37,14 +37,21 @@ def top_confusions(pairs, n=10):
     return Counter((t, p) for t, p in pairs if t != p).most_common(n)
 
 
-def document_recovered(doc, page_preds, all_docs):
+def document_recovered(doc, predicted_docs):
     """
-    A document counts as recovered only if the pipeline would produce exactly
-    its pages as one file: every page gets its true type, and no page from
-    another document in the same PDF gets that type too (the pipeline merges
-    all pages of one type into a single file).
+    A document counts as recovered only if the pipeline would save exactly its
+    pages as one file with the right type: nothing missing, nothing from
+    another document merged in.
     """
-    if any(page_preds[i] != doc["doc_type"] for i in doc["pages"]):
-        return False
-    same_type_pages = {i for i, p in enumerate(page_preds) if p == doc["doc_type"]}
-    return same_type_pages == set(doc["pages"])
+    return any(p["doc_type"] == doc["doc_type"] and set(p["pages"]) == set(doc["pages"])
+               for p in predicted_docs)
+
+
+def calibration(results, buckets=((0.0, 0.7), (0.7, 0.9), (0.9, 0.97), (0.97, 1.01))):
+    """results: list of (confidence, correct). Accuracy within each confidence band."""
+    out = []
+    for low, high in buckets:
+        band = [ok for c, ok in results if c is not None and low <= c < high]
+        out.append({"band": f"{low:.2f}-{min(high, 1.0):.2f}", "pages": len(band),
+                    "accuracy": sum(band) / len(band) if band else None})
+    return out

@@ -3,7 +3,8 @@ import os
 from database.db import get_candidate_documents, insert_document, update_candidate_status
 from services.gmail_service import get_gmail_service, get_attachment_for_candidate
 from services.drive_service import get_pdf_from_drive_folder, upload_candidate_document
-from services.document_classifier import classify_pdf_from_bytes, save_split_documents
+from services.document_classifier import write_temp_pdf, save_documents
+from services.ai_classifier import classify_pdf
 
 
 def compute_status(required_docs, uploaded_types):
@@ -19,6 +20,30 @@ def compute_status(required_docs, uploaded_types):
         status = "Failed"
 
     return status, found, missing
+
+
+def log_page_results(page_results, log):
+    for r in page_results:
+        line = f"Page {r['page'] + 1}: {r['doc_type']}"
+        if r["continues_previous_page"]:
+            line += " (continued)"
+        if r["method"] == "llm":
+            line += f" — evidence “{r['evidence']}”"
+        if r["doc_type"] == "unknown":
+            line += " — not a verification document, not uploaded"
+        if r["keyword_type"] != r["doc_type"]:
+            line += f" ⚠️ keyword rules say {r['keyword_type']}: please review"
+        log(line)
+
+
+def document_provenance(document, page_results):
+    """(classified_by, confidence) for the database: who labelled the document and how sure it was."""
+    if not page_results:
+        return "keyword", None
+    pages = [page_results[p] for p in document["pages"]]
+    if all(p["method"] == "llm" for p in pages):
+        return "llm", min(p["confidence"] for p in pages)
+    return "keyword_fallback", None
 
 
 def fetch_candidate_pdf(candidate_email, source_folder, log):
@@ -65,16 +90,16 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
             status, found, missing = compute_status(required_docs, [])
             return {"status": "Failed", "found": found, "missing": missing, "error": None}
 
-        log("🔍 Classifying document pages...")
-        page_results, temp_path = classify_pdf_from_bytes(data)
-        log(f"Page classification: {page_results}")
-
-        if "unknown" in page_results:
-            log(f"⚠️ {len(page_results['unknown'])} page(s) not recognised — not uploaded")
+        temp_path = write_temp_pdf(data)
+        method = "the local LLM" if settings.get("classifier") == "llm" else "keyword rules"
+        log(f"🔍 Classifying document pages with {method}...")
+        documents, page_results = classify_pdf(temp_path, settings, log)
+        if page_results:
+            log_page_results(page_results, log)
 
         log("💾 Splitting and saving documents locally...")
-        saved = save_split_documents(temp_path, page_results, f"uploads/{candidate_id}")
-        log(f"Saved locally: {list(saved.keys())}")
+        saved = save_documents(temp_path, documents, f"uploads/{candidate_id}")
+        log(f"Saved locally: {[os.path.basename(path) for _, path in saved]}")
 
         existing_types = [row[2] for row in get_candidate_documents(candidate_id)]
         uploaded_types = list(existing_types)
@@ -84,7 +109,7 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
         else:
             log("❌ Could not classify any pages.")
 
-        for doc_type, file_path in saved.items():
+        for (doc_type, file_path), document in zip(saved, documents):
             if doc_type in existing_types:
                 log(f"⏩ {doc_type} already exists — skipping duplicate")
                 continue
@@ -95,7 +120,8 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
                 file_path=file_path,
                 doc_type=doc_type
             )
-            insert_document(candidate_id, doc_type, file_path)
+            classified_by, confidence = document_provenance(document, page_results)
+            insert_document(candidate_id, doc_type, file_path, classified_by, confidence)
             uploaded_types.append(doc_type)
             log(f"✅ {doc_type} uploaded → {link}")
 

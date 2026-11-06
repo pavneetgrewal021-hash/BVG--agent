@@ -1,0 +1,879 @@
+{
+  "summary": {
+    "method": "llm",
+    "model": "phi4-mini",
+    "split": "test",
+    "prompt_version": "v2",
+    "candidates": 10,
+    "pages": 47,
+    "page_accuracy": 0.9148936170212766,
+    "page_accuracy_digital": 0.9166666666666666,
+    "page_accuracy_scanned": 0.9130434782608695,
+    "pages_digital": 24,
+    "pages_scanned": 23,
+    "macro_f1": 0.8890109890109891,
+    "documents": 45,
+    "documents_recovered": 37,
+    "status_accuracy": 0.9,
+    "false_completed": 0,
+    "seconds_per_page": 3.0024931276578735,
+    "fallback_pages": 0,
+    "evidence_found_rate": 0.723404255319149,
+    "calibration": [
+      {
+        "band": "0.00-0.70",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.70-0.90",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.90-0.97",
+        "pages": 31,
+        "accuracy": 0.9032258064516129
+      },
+      {
+        "band": "0.97-1.00",
+        "pages": 16,
+        "accuracy": 0.9375
+      }
+    ]
+  },
+  "per_class": {
+    "10th_certificate": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "support": 6
+    },
+    "12th_certificate": {
+      "precision": 1.0,
+      "recall": 0.3333333333333333,
+      "f1": 0.5,
+      "support": 3
+    },
+    "aadhaar": {
+      "precision": 0.8571428571428571,
+      "recall": 1.0,
+      "f1": 0.923076923076923,
+      "support": 6
+    },
+    "bank_statement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "bgv_consent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "court_record": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "degree_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "driving_license": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "experience_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "form_16": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "marksheet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "offer_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "pan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "passport": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "payslip": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "police_verification": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "provisional_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "relieving_letter": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "unknown": {
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "support": 2
+    },
+    "voter_id": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    }
+  },
+  "confusions": [
+    [
+      "12th_certificate",
+      "10th_certificate",
+      2
+    ],
+    [
+      "relieving_letter",
+      "unknown",
+      1
+    ],
+    [
+      "unknown",
+      "aadhaar",
+      1
+    ]
+  ],
+  "candidates": [
+    {
+      "candidate": "TEST06",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 20.92,
+      "docs": 4,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "TEST07",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 17.48,
+      "docs": 4,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST08",
+      "true_status": "Failed",
+      "pred_status": "Failed",
+      "seconds": 9.34,
+      "docs": 4,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "TEST09",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 12.52,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST10",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 12.1,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST11",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 12.85,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST12",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 20.63,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST13",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 16.39,
+      "docs": 5,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "TEST14",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 10.09,
+      "docs": 3,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST15",
+      "true_status": "Failed",
+      "pred_status": "Partial",
+      "seconds": 8.8,
+      "docs": 5,
+      "docs_recovered": 2
+    }
+  ],
+  "pages": [
+    {
+      "candidate": "TEST06",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-PAN Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian Certificate of Secondary Education Examination 2011",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST06",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Bachelor of Technology (Computer Science and Engineering) degree certificate",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 0,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Matriculation Examination 2012 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 3,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST07",
+      "page": 4,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "statement of marks sunrise institute of engineering (affiliated to northern plains university) examination: b.tech semester iv, 2016-17",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 0,
+      "true": "offer_letter",
+      "pred": "offer_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "Letter of Offer",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 1,
+      "true": "relieving_letter",
+      "pred": "unknown",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 2,
+      "true": "form_16",
+      "pred": "form_16",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Form 16 - Part B (Annexure)",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST08",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Salary Slip for the month of October 2019",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 0,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 1,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Matriculation Examination 2013 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Senior Secondary Certificate Examination (Class XII) 2015",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Bachelor of Technology (Computer Science and Engineering) degree certificate",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST09",
+      "page": 4,
+      "true": "provisional_certificate",
+      "pred": "provisional_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Provisional Degree Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Matriculation Examination 2012 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 3,
+      "true": "driving_license",
+      "pred": "driving_license",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "Driving Licence issued by a transport department / licensing authority",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST10",
+      "page": 4,
+      "true": "bank_statement",
+      "pred": "bank_statement",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Coastal Commercial Bank Statement of Account",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 0,
+      "true": "voter_id",
+      "pred": "voter_id",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "e-EPIC",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-PAN Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 3,
+      "true": "experience_letter",
+      "pred": "experience_letter",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Experience Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST11",
+      "page": 4,
+      "true": "court_record",
+      "pred": "court_record",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Litigation Database Search",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 2,
+      "true": "bgv_consent",
+      "pred": "bgv_consent",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Authorization for Background Check",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Matriculation Examination 2015 Certificate cum Detailed Marks Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST12",
+      "page": 4,
+      "true": "police_verification",
+      "pred": "police_verification",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Character and Antecedents Verification Report",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 0,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 1.0,
+      "evidence": "Indian Passport",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian School Certificate Examination 2018",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Bachelor of Technology (Computer Science and Engineering) degree certificate",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST13",
+      "page": 4,
+      "true": "offer_letter",
+      "pred": "offer_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Letter of Offer",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 1,
+      "true": "unknown",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Aadhaar card",
+      "evidence_found": false,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "e-Permanent Account Number (e-PAN) Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST14",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian Certificate of Secondary Education Examination 2013",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 0,
+      "true": "12th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Indian School Certificate Examination 2013 Year 12 Pass Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 1,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Bachelor of Technology (Computer Science and Engineering) degree certificate",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Statement of Marks",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Salary Slip for the month of February 2020",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "TEST15",
+      "page": 4,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.98,
+      "evidence": "Salary Slip for the month of January 2020",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    }
+  ]
+}

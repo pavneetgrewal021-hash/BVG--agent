@@ -56,7 +56,10 @@ DEFAULT_SETTINGS = {
     "required_docs": ["aadhaar", "pan", "10th_certificate"],
     "drive_root_folder": "BGV_Candidates",
     "folder_name_pattern": "{candidate_id}-{name}-{date}",
-    "file_name_pattern": "{name}_{date}_{doc_type}"
+    "file_name_pattern": "{name}_{date}_{doc_type}",
+    "classifier": "keyword",
+    "llm_provider": "ollama",
+    "llm_model": "qwen3:4b"
 }
 
 

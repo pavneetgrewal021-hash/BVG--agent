@@ -118,30 +118,45 @@ DOC_KEYWORDS = {
     "court_record":       ["court record", "criminal record", "fir", "first information report", "judicial"],
 }
 
-def classify_pdf_pages(pdf_path):
-    """Goes page by page. Returns {doc_type: [page_indices]}"""
+def extract_page_texts(pdf_path):
+    """Text of every page: the PDF's own text layer, or Tesseract OCR when a page has none."""
     doc = fitz.open(pdf_path)
-    page_results = {}
+    texts = []
 
-    for i, page in enumerate(doc):
+    for page in doc:
         text = page.get_text().strip()
 
-        if not text:  
+        if not text:
             pix = page.get_pixmap(dpi=200)
             img = Image.open(io.BytesIO(pix.tobytes("png")))
             text = pytesseract.image_to_string(img)
 
-        text = text.lower()
-        matched_type = None
-
-        for doc_type, keywords in DOC_KEYWORDS.items():
-            if any(k in text for k in keywords):
-                matched_type = doc_type
-                break
-
-        page_results.setdefault(matched_type or "unknown", []).append(i)
+        texts.append(text)
 
     doc.close()
+    return texts
+
+
+def keyword_classify_text(text):
+    """First doc type whose keywords appear in the text, else 'unknown'."""
+    text = text.lower()
+
+    for doc_type, keywords in DOC_KEYWORDS.items():
+        if any(k in text for k in keywords):
+            return doc_type
+
+    return "unknown"
+
+
+def classify_pdf_pages(pdf_path, page_texts=None):
+    """Goes page by page. Returns {doc_type: [page_indices]}"""
+    if page_texts is None:
+        page_texts = extract_page_texts(pdf_path)
+
+    page_results = {}
+    for i, text in enumerate(page_texts):
+        page_results.setdefault(keyword_classify_text(text), []).append(i)
+
     return page_results
 
 
@@ -169,19 +184,55 @@ def save_split_documents(pdf_path, page_results, output_dir):
     src.close()
     return saved
 
-def classify_pdf_from_bytes(pdf_bytes, temp_path=None):
-    """Takes raw PDF bytes (e.g. from Gmail), writes a temp file, classifies it.
-    The caller must delete temp_path when done."""
+def write_temp_pdf(pdf_bytes):
+    """Writes bytes to a fresh temp file and returns its path. The caller must delete it."""
     import os
     import tempfile
 
     # A fresh file per run, so two users processing at once can't overwrite each other's PDF
-    if temp_path is None:
-        fd, temp_path = tempfile.mkstemp(prefix="bgv_", suffix=".pdf")
-        os.close(fd)
-
-    with open(temp_path, "wb") as f:
+    fd, temp_path = tempfile.mkstemp(prefix="bgv_", suffix=".pdf")
+    with os.fdopen(fd, "wb") as f:
         f.write(pdf_bytes)
+    return temp_path
+
+
+def save_documents(pdf_path, documents, output_dir):
+    """Saves each document ({"doc_type", "pages"}) as its own PDF.
+    Repeated types get a suffix (payslip.pdf, payslip_2.pdf). Returns [(doc_type, filepath)]."""
+    import os
+    os.makedirs(output_dir, exist_ok=True)
+
+    src = fitz.open(pdf_path)
+    saved, counts = [], {}
+
+    for document in documents:
+        doc_type = document["doc_type"]
+        counts[doc_type] = counts.get(doc_type, 0) + 1
+        suffix = "" if counts[doc_type] == 1 else f"_{counts[doc_type]}"
+
+        new_doc = fitz.open()
+        for p in document["pages"]:
+            new_doc.insert_pdf(src, from_page=p, to_page=p)
+
+        filepath = os.path.join(output_dir, f"{doc_type}{suffix}.pdf")
+        new_doc.save(filepath)
+        new_doc.close()
+        saved.append((doc_type, filepath))
+
+    src.close()
+    return saved
+
+
+def classify_pdf_from_bytes(pdf_bytes, temp_path=None):
+    """Takes raw PDF bytes (e.g. from Gmail), writes a temp file, classifies it.
+    The caller must delete temp_path when done."""
+    import os
+
+    if temp_path is None:
+        temp_path = write_temp_pdf(pdf_bytes)
+    else:
+        with open(temp_path, "wb") as f:
+            f.write(pdf_bytes)
 
     try:
         page_results = classify_pdf_pages(temp_path)

@@ -55,9 +55,11 @@ def create_tables():
     # Older databases were created before documents had uploaded_at.
     # SQLite refuses a CURRENT_TIMESTAMP default when adding a column to a
     # non-empty table, so add it plain; insert_document sets it explicitly.
+    # classified_by / confidence record whether the LLM or the keyword rules labelled the document.
     columns = [row[1] for row in cursor.execute("PRAGMA table_info(documents)")]
-    if "uploaded_at" not in columns:
-        cursor.execute("ALTER TABLE documents ADD COLUMN uploaded_at TIMESTAMP")
+    for column, sql_type in [("uploaded_at", "TIMESTAMP"), ("classified_by", "TEXT"), ("confidence", "REAL")]:
+        if column not in columns:
+            cursor.execute(f"ALTER TABLE documents ADD COLUMN {column} {sql_type}")
 
     conn.commit()
     conn.close()
@@ -124,16 +126,16 @@ def get_candidate_count_by_status(status):
 
     return count
 
-def insert_document(candidate_id, document_type, file_name):
+def insert_document(candidate_id, document_type, file_name, classified_by=None, confidence=None):
 
     conn = get_connection()
     cursor = conn.cursor()
 
     cursor.execute("""
     INSERT INTO documents
-    (candidate_id, document_type, file_name, uploaded_at)
-    VALUES (?, ?, ?, CURRENT_TIMESTAMP)
-    """, (candidate_id, document_type, file_name))
+    (candidate_id, document_type, file_name, uploaded_at, classified_by, confidence)
+    VALUES (?, ?, ?, CURRENT_TIMESTAMP, ?, ?)
+    """, (candidate_id, document_type, file_name, classified_by, confidence))
 
     conn.commit()
     conn.close()

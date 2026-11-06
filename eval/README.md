@@ -80,6 +80,61 @@ The errors trace back to the classifier's design (first keyword match wins, subs
 - Documents worded without the expected phrases (ISC Class 12, a litigation search,
   a police antecedents report) become `unknown`.
 
+## Local LLM classifier (Phase 2)
+
+`services/ai_classifier.py` sends each page's text to a local model through Ollama
+(`qwen3:4b`, thinking off, temperature 0, 4096-token context, JSON output constrained to a
+schema with the 32 document types + `unknown`). The model also says whether a page
+continues the previous one, so separate documents of one type can be split. If the
+model fails for a page, that page falls back to the keyword rules.
+
+```bash
+python eval/run_eval.py --split test --method llm --model qwen3:4b
+```
+
+### How it was tuned (dev only)
+
+| Prompt | Change | qwen3:4b on dev: page acc. / macro F1 / docs recovered |
+|---|---|---|
+| v1 | first version | 74.1% / 0.626 / 11 of 22 |
+| v2 | accept "continues previous page" only when the model's own type agrees with the previous page (v1 copied the previous type, so one mistake spread to the next pages); sharper descriptions for school-board vs university documents; evidence must quote the title or issuer | 92.6% / 0.905 / 18 of 22 |
+
+Tuning stopped at v2 to avoid fitting the 27 dev pages. Rule 1 of the prompt ("classify
+by what the page is, not what it mentions") targets the "mentions Aadhaar" failure seen in
+the Phase 1 baseline analysis.
+
+**Model choice was made on dev, before running test:** qwen3:4b (92.6% / 0.905 / 18 of 22)
+over phi4-mini (88.9% / 0.837 / 15 of 22).
+
+### Results on the test split (run once, no changes afterwards)
+
+| | Keyword (before) | **qwen3:4b, v2** | phi4-mini, v2 |
+|---|---|---|---|
+| Page accuracy | 66.0% (31/47) | **97.9% (46/47)** | 91.5% (43/47) |
+| Macro F1 | 0.511 | **0.983** | 0.889 |
+| Documents recovered | 22/45 | **40/45** | 37/45 |
+| Status accuracy | 7/10 | **10/10** | 9/10 |
+| False "Completed" | 0 | **0** | 0 |
+| Evidence quote found on page | - | 97.9% | 72.3% |
+| Time (laptop, RTX 3050 Ti 4 GB) | 0.74 s/page | 3.62 s/page | 3.00 s/page |
+
+Hardware note: neither model fits fully in 4 GB of VRAM (about 55-72% runs on the GPU), so
+part of each model runs on the CPU.
+
+### What did not work, and other findings
+
+- **Self-reported confidence is useless here.** Every answer was 0.90 or higher, right or wrong.
+- **Token log-probabilities do not work either.** Ollama reports them from before the JSON
+  schema restriction is applied, so the forced tokens show near-zero probability whatever the answer.
+- **Thinking mode:** on one test page qwen3 took 119 s instead of 1 s and answered wrong. It stays off.
+- **Disagreement with the keyword rules is a useful review signal.** On the 48 dev and test pages
+  where the two agreed, the LLM was right on all 48. All 3 of its mistakes were on pages
+  where they disagreed. They disagree on 26 of 74 pages, so the app shows this as a
+  "please review" hint and does not change the status.
+- **Remaining failure:** two documents of the same type next to each other (two payslips, two
+  marksheets) are usually merged, because the model says the second continues the first.
+  This explains 4 of the 5 test documents that were not recovered.
+
 ## Known limitations (read before quoting numbers)
 
 1. **Synthetic and small.** 74 pages: one page is about 1.4 percentage points on test
@@ -92,3 +147,9 @@ The errors trace back to the classifier's design (first keyword match wins, subs
    by people who knew the keyword list. The mitigation is the unseen-wording test split and
    listing every trap here.
 4. **Short documents.** Real documents are longer and messier (tables, stamps, logos, Hindi text).
+5. **Test scored higher than dev for the LLM** (97.9% vs 92.6%). With 47 and 27 pages this is
+   within noise, and the test wordings may simply be easier for the model. Do not read it as
+   "the model generalises better than it fits".
+6. **Prompt rules came from studying failures.** The baseline analysis looked at errors on
+   both splits before the prompt was written. Rule 1 is a general domain rule, not specific
+   to any template, but it is still knowledge gained partly from test.
