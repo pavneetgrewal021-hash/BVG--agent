@@ -1,0 +1,612 @@
+{
+  "summary": {
+    "method": "keyword",
+    "split": "test",
+    "candidates": 10,
+    "pages": 47,
+    "page_accuracy": 0.6595744680851063,
+    "page_accuracy_digital": 0.75,
+    "page_accuracy_scanned": 0.5652173913043478,
+    "pages_digital": 24,
+    "pages_scanned": 23,
+    "macro_f1": 0.5111804861804862,
+    "documents": 45,
+    "documents_recovered": 22,
+    "status_accuracy": 0.7,
+    "false_completed": 0,
+    "seconds_per_page": 0.7355287276614616
+  },
+  "per_class": {
+    "10th_certificate": {
+      "precision": 0.8,
+      "recall": 0.6666666666666666,
+      "f1": 0.7272727272727272,
+      "support": 6
+    },
+    "12th_certificate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 3
+    },
+    "aadhaar": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "support": 6
+    },
+    "bank_statement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "bgv_consent": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "court_record": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "degree_certificate": {
+      "precision": 0.4444444444444444,
+      "recall": 1.0,
+      "f1": 0.6153846153846153,
+      "support": 4
+    },
+    "driving_license": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "experience_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "form_16": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "marksheet": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 4
+    },
+    "nda": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 0
+    },
+    "offer_letter": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    "pan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 6
+    },
+    "passport": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "support": 1
+    },
+    "payslip": {
+      "precision": 0.75,
+      "recall": 1.0,
+      "f1": 0.8571428571428571,
+      "support": 3
+    },
+    "police_verification": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "provisional_certificate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "relieving_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "unknown": {
+      "precision": 0.3333333333333333,
+      "recall": 1.0,
+      "f1": 0.5,
+      "support": 2
+    },
+    "voter_id": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    }
+  },
+  "confusions": [
+    [
+      "marksheet",
+      "degree_certificate",
+      4
+    ],
+    [
+      "10th_certificate",
+      "nda",
+      2
+    ],
+    [
+      "offer_letter",
+      "aadhaar",
+      2
+    ],
+    [
+      "12th_certificate",
+      "unknown",
+      2
+    ],
+    [
+      "form_16",
+      "payslip",
+      1
+    ],
+    [
+      "12th_certificate",
+      "10th_certificate",
+      1
+    ],
+    [
+      "provisional_certificate",
+      "degree_certificate",
+      1
+    ],
+    [
+      "court_record",
+      "unknown",
+      1
+    ],
+    [
+      "bgv_consent",
+      "passport",
+      1
+    ],
+    [
+      "police_verification",
+      "unknown",
+      1
+    ]
+  ],
+  "candidates": [
+    {
+      "candidate": "TEST06",
+      "true_status": "Completed",
+      "pred_status": "Partial",
+      "seconds": 3.06,
+      "docs": 4,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "TEST07",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 4.42,
+      "docs": 4,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST08",
+      "true_status": "Failed",
+      "pred_status": "Partial",
+      "seconds": 1.52,
+      "docs": 4,
+      "docs_recovered": 1
+    },
+    {
+      "candidate": "TEST09",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 3.07,
+      "docs": 5,
+      "docs_recovered": 1
+    },
+    {
+      "candidate": "TEST10",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 3.03,
+      "docs": 5,
+      "docs_recovered": 5
+    },
+    {
+      "candidate": "TEST11",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 4.45,
+      "docs": 5,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "TEST12",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 7.59,
+      "docs": 5,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "TEST13",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 4.52,
+      "docs": 5,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST14",
+      "true_status": "Completed",
+      "pred_status": "Partial",
+      "seconds": 2.9,
+      "docs": 3,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "TEST15",
+      "true_status": "Failed",
+      "pred_status": "Failed",
+      "seconds": 0.01,
+      "docs": 5,
+      "docs_recovered": 0
+    }
+  ],
+  "pages": [
+    {
+      "candidate": "TEST06",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST06",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST06",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "nda",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST06",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST07",
+      "page": 0,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST07",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST07",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST07",
+      "page": 3,
+      "true": "marksheet",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST07",
+      "page": 4,
+      "true": "marksheet",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST08",
+      "page": 0,
+      "true": "offer_letter",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST08",
+      "page": 1,
+      "true": "relieving_letter",
+      "pred": "relieving_letter",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST08",
+      "page": 2,
+      "true": "form_16",
+      "pred": "payslip",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST08",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST09",
+      "page": 0,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST09",
+      "page": 1,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST09",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST09",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST09",
+      "page": 4,
+      "true": "provisional_certificate",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST10",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST10",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST10",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST10",
+      "page": 3,
+      "true": "driving_license",
+      "pred": "driving_license",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST10",
+      "page": 4,
+      "true": "bank_statement",
+      "pred": "bank_statement",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST11",
+      "page": 0,
+      "true": "voter_id",
+      "pred": "voter_id",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST11",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST11",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST11",
+      "page": 3,
+      "true": "experience_letter",
+      "pred": "experience_letter",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST11",
+      "page": 4,
+      "true": "court_record",
+      "pred": "unknown",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST12",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST12",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST12",
+      "page": 2,
+      "true": "bgv_consent",
+      "pred": "passport",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST12",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST12",
+      "page": 4,
+      "true": "police_verification",
+      "pred": "unknown",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST13",
+      "page": 0,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST13",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST13",
+      "page": 2,
+      "true": "12th_certificate",
+      "pred": "unknown",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST13",
+      "page": 3,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST13",
+      "page": 4,
+      "true": "offer_letter",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST14",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST14",
+      "page": 1,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST14",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST14",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "nda",
+      "scanned": true
+    },
+    {
+      "candidate": "TEST15",
+      "page": 0,
+      "true": "12th_certificate",
+      "pred": "unknown",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST15",
+      "page": 1,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST15",
+      "page": 2,
+      "true": "marksheet",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST15",
+      "page": 3,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false
+    },
+    {
+      "candidate": "TEST15",
+      "page": 4,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false
+    }
+  ]
+}

@@ -1,0 +1,375 @@
+{
+  "summary": {
+    "method": "keyword",
+    "split": "dev",
+    "candidates": 5,
+    "pages": 27,
+    "page_accuracy": 0.7037037037037037,
+    "page_accuracy_digital": 0.9166666666666666,
+    "page_accuracy_scanned": 0.5333333333333333,
+    "pages_digital": 12,
+    "pages_scanned": 15,
+    "macro_f1": 0.4869047619047619,
+    "documents": 22,
+    "documents_recovered": 12,
+    "status_accuracy": 0.4,
+    "false_completed": 2,
+    "seconds_per_page": 0.8422774814815192
+  },
+  "per_class": {
+    "10th_certificate": {
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1": 0.7499999999999999,
+      "support": 3
+    },
+    "12th_certificate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 2
+    },
+    "aadhaar": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "support": 4
+    },
+    "bank_statement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "bgv_consent": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "degree_certificate": {
+      "precision": 0.3333333333333333,
+      "recall": 0.5,
+      "f1": 0.4,
+      "support": 2
+    },
+    "experience_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "marksheet": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "offer_letter": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "pan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "passport": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "payslip": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "provisional_certificate": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    },
+    "unknown": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 1
+    }
+  },
+  "confusions": [
+    [
+      "12th_certificate",
+      "10th_certificate",
+      2
+    ],
+    [
+      "unknown",
+      "aadhaar",
+      1
+    ],
+    [
+      "marksheet",
+      "degree_certificate",
+      1
+    ],
+    [
+      "degree_certificate",
+      "aadhaar",
+      1
+    ],
+    [
+      "offer_letter",
+      "aadhaar",
+      1
+    ],
+    [
+      "provisional_certificate",
+      "degree_certificate",
+      1
+    ],
+    [
+      "bgv_consent",
+      "aadhaar",
+      1
+    ]
+  ],
+  "candidates": [
+    {
+      "candidate": "DEV01",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 4.54,
+      "docs": 4,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "DEV02",
+      "true_status": "Partial",
+      "pred_status": "Completed",
+      "seconds": 4.38,
+      "docs": 4,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "DEV03",
+      "true_status": "Failed",
+      "pred_status": "Partial",
+      "seconds": 3.13,
+      "docs": 3,
+      "docs_recovered": 2
+    },
+    {
+      "candidate": "DEV04",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 3.06,
+      "docs": 6,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "DEV05",
+      "true_status": "Partial",
+      "pred_status": "Completed",
+      "seconds": 7.63,
+      "docs": 5,
+      "docs_recovered": 2
+    }
+  ],
+  "pages": [
+    {
+      "candidate": "DEV01",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV01",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV01",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV01",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV01",
+      "page": 4,
+      "true": "12th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV02",
+      "page": 0,
+      "true": "unknown",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV02",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV02",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV02",
+      "page": 3,
+      "true": "marksheet",
+      "pred": "degree_certificate",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV02",
+      "page": 4,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV02",
+      "page": 5,
+      "true": "degree_certificate",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV03",
+      "page": 0,
+      "true": "offer_letter",
+      "pred": "aadhaar",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV03",
+      "page": 1,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV03",
+      "page": 2,
+      "true": "experience_letter",
+      "pred": "experience_letter",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV04",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV04",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV04",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV04",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV04",
+      "page": 4,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV04",
+      "page": 5,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV04",
+      "page": 6,
+      "true": "bank_statement",
+      "pred": "bank_statement",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV05",
+      "page": 0,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV05",
+      "page": 1,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV05",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false
+    },
+    {
+      "candidate": "DEV05",
+      "page": 3,
+      "true": "12th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV05",
+      "page": 4,
+      "true": "provisional_certificate",
+      "pred": "degree_certificate",
+      "scanned": true
+    },
+    {
+      "candidate": "DEV05",
+      "page": 5,
+      "true": "bgv_consent",
+      "pred": "aadhaar",
+      "scanned": true
+    }
+  ]
+}
