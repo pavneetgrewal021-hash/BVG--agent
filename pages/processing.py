@@ -81,6 +81,9 @@ if st.button("▶️ Start Verification", type="primary"):
         st.success(f"✅ {candidate_name} — Verification Completed!")
     elif status == "Partial":
         st.warning(f"⚠️ Partial — still missing: {result['missing']}")
+    elif status == "Needs Review":
+        st.warning(f"🚩 Documents disagree ({len(result['flags'])} problem(s)). "
+                   "Open the Review Queue to check and approve.")
     elif status == "Error":
         st.error(f"🛑 Something went wrong on our side, status left unchanged. Try again. ({result['error']})")
     else:

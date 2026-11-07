@@ -198,6 +198,61 @@ numbers wrong; with checks it got 15 of 15.
 - **The regex baseline is biased upward.** Its patterns were written knowing the template
   labels, which is why it matches on dev (84%) but drops on the unseen test wording (74%).
 
+## Cross-document consistency checks (Phase 4)
+
+`services/consistency.py` asks whether all of a candidate's documents belong to the same
+person. It uses the names and DOBs from Phase 3 and plain code only:
+
+- **name_mismatch.** A document's name must be a plausible way of writing the candidate's
+  (Excel) name. Dropping a middle name, using initials, putting the surname first and a
+  one-letter OCR slip are allowed. Every word the document prints must fit a *different*
+  word of the reference, and the first name and surname must both be present. "Rohan" vs
+  "Rahul" does not fit. Text after a relation marker ("D/O ...", "S/O ...") is ignored.
+- **dob_mismatch.** Each DOB is compared with the majority DOB. On a tie, the stronger
+  document wins (Aadhaar > passport > PAN > 10th...). A document already flagged as someone
+  else's does not take part in the DOB vote.
+
+Any flag sets the candidate's status to **Needs Review** instead of Completed. The Review
+Queue shows the flags and lets a person **approve** after checking. An approved flag is not
+raised again on later runs.
+
+### Evaluation set
+
+A third split, `consistency` (12 candidates, own random seed, so dev and test are
+unchanged), was added for this phase. Together with the cases already planted in dev and
+test, it gives **10 real problems** and **10 legitimate name variants**:
+
+- Real problems: sibling's PAN, sibling's passport, a stranger's Aadhaar or 10th
+  certificate, DOB off by a year, 30 days or 1 day.
+- Legitimate variants: middle name dropped or shortened to an initial, initials only,
+  surname first.
+
+```bash
+python eval/run_consistency_eval.py --split all --source extracted --model qwen3:4b
+```
+
+### Results (27 candidates, all splits)
+
+| Name matcher | Problems caught | Missed | False flags | Review decision right |
+|---|---|---|---|---|
+| Exact match after case and spacing (naive) | 10/10 | 0 | 10 (every legitimate variant) | 21/27 |
+| **Smart matcher** (app) | **10/10** | **0** | **0** | **27/27** |
+
+The results are identical with ground-truth fields and with fields read end to end by
+qwen3:4b plus checks, because extraction got every name and DOB used here right.
+
+### Limits
+
+- **Small and self-written.** 10 problems and 10 variants, and the same person wrote both
+  the scenarios and the matching rules (before running them). Treat 10/10 as "works on the
+  cases it was designed for". It is not a measured real-world rate.
+- The planted "swapped day and month" became a 1-day shift, because that person's birth
+  day (24) cannot be a month. Swap detection at field level is covered by unit tests.
+- The relation-marker rule ("D/O ...") was written after Phase 3's test run showed a name
+  like "Neha Patel, D/O Imran Patel".
+- A person known by their middle name ("Mohan Nair" for "Joseph Mohan Nair") is flagged.
+  That is deliberate: a person should check it.
+
 ## Known limitations (read before quoting numbers)
 
 1. **Synthetic and small.** 74 pages: one page is about 1.4 percentage points on test

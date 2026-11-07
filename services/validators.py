@@ -95,9 +95,11 @@ def check_id_number(doc_type, number, holder_name=None):
     if doc_type == "pan":
         if n[3] != "P":
             problems.append(f"PAN holder type is '{n[3]}', not 'P' (individual)")
-        surname = normalise_name(holder_name).split()[-1:] if holder_name else []
-        if surname and n[4] != surname[0][0].upper():
-            problems.append(f"PAN 5th letter '{n[4]}' does not match surname initial '{surname[0][0].upper()}'")
+        # The surname may be printed first or last ("Sharma Arjun"), so accept either end
+        words = normalise_name(holder_name).split() if holder_name else []
+        if words and n[4] not in {words[0][0].upper(), words[-1][0].upper()}:
+            problems.append(f"PAN 5th letter '{n[4]}' does not match the surname initial "
+                            f"('{words[-1][0].upper()}' or '{words[0][0].upper()}')")
     return problems
 
 

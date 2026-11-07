@@ -1,6 +1,8 @@
 import os
 
-from database.db import get_candidate_documents, insert_document, insert_extracted_fields, update_candidate_status
+from database.db import (get_candidate_documents, get_identity_fields, insert_document, insert_extracted_fields,
+                         mark_flags_reviewed, replace_flags, update_candidate_status)
+from services.consistency import check_candidate
 from services.gmail_service import get_gmail_service, get_attachment_for_candidate
 from services.drive_service import get_pdf_from_drive_folder, upload_candidate_document
 from services.document_classifier import write_temp_pdf, save_documents
@@ -22,6 +24,15 @@ def compute_status(required_docs, uploaded_types):
         status = "Failed"
 
     return status, found, missing
+
+
+def approve_after_review(candidate_id, required_docs):
+    """A person has checked the flagged documents: close the flags and set the normal status."""
+    mark_flags_reviewed(candidate_id)
+    present = [row[2] for row in get_candidate_documents(candidate_id)]
+    status, _, _ = compute_status(required_docs, present)
+    update_candidate_status(candidate_id, status)
+    return status
 
 
 def log_page_results(page_results, log):
@@ -116,7 +127,7 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
         if not data:
             update_candidate_status(candidate_id, "Failed")
             status, found, missing = compute_status(required_docs, [])
-            return {"status": "Failed", "found": found, "missing": missing, "error": None}
+            return {"status": "Failed", "found": found, "missing": missing, "flags": [], "error": None}
 
         temp_path = write_temp_pdf(data)
         method = "the local LLM" if settings.get("classifier") == "llm" else "keyword rules"
@@ -154,17 +165,25 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
             log(f"✅ {doc_type} uploaded → {link}")
             extract_and_store(document_id, candidate_id, document, settings, log)
 
+        # Do all documents belong to this candidate? Uses every stored document, not just this run's.
+        flags = replace_flags(candidate_id, check_candidate(candidate_name, get_identity_fields(candidate_id)))
+        for f in flags:
+            log(f"🚩 {f['type'].replace('_', ' ')} on {f['doc_type']}: {f['detail']}")
+
         status, found, missing = compute_status(required_docs, uploaded_types)
+        if flags:
+            # Never report Completed while documents disagree: a person decides first
+            status = "Needs Review"
         update_candidate_status(candidate_id, status)
         log(f"📊 Status updated → {status}")
         log(f"Found: {found}")
         log(f"Missing: {missing}")
 
-        return {"status": status, "found": found, "missing": missing, "error": None}
+        return {"status": status, "found": found, "missing": missing, "flags": flags, "error": None}
 
     except Exception as e:
         log(f"🛑 Pipeline error: {e}")
-        return {"status": "Error", "found": [], "missing": [], "error": str(e)}
+        return {"status": "Error", "found": [], "missing": [], "flags": [], "error": str(e)}
 
     finally:
         if temp_path and os.path.exists(temp_path):

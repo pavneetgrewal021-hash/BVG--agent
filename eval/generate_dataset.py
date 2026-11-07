@@ -67,7 +67,30 @@ SCENARIOS = {
         [("12th_certificate", {}), ("degree_certificate", {}), ("marksheet", {}),
          ("payslip", {"month": 0}), ("payslip", {"month": 1})],
     ],
+    # Phase 4: candidates built to test cross-document consistency checks. Legitimate name
+    # variants (must NOT be flagged) mixed with real mismatches (must be flagged).
+    # Generated with its own random seed, so dev and test above stay byte-for-byte the same.
+    "consistency": [
+        {"docs": [("aadhaar", {}), ("pan", {}), ("10th_certificate", {})]},
+        {"middle": True, "docs": [("aadhaar", {}), ("pan", {"drop_middle": True}),
+                                  ("10th_certificate", {"middle_initial": True})]},
+        {"docs": [("aadhaar", {}), ("pan", {"surname_first": True}), ("10th_certificate", {"initials": True})]},
+        {"docs": [("aadhaar", {}), ("pan", {"sibling": True}), ("10th_certificate", {})]},
+        {"docs": [("aadhaar", {}), ("pan", {}), ("10th_certificate", {"dob_swap": True})]},
+        {"docs": [("aadhaar", {"other_person": True}), ("pan", {}), ("10th_certificate", {})]},
+        {"middle": True, "docs": [("aadhaar", {}), ("pan", {}), ("passport", {}),
+                                  ("10th_certificate", {"dob_shift": 365})]},
+        {"docs": [("aadhaar", {"initials": True}), ("pan", {}), ("degree_certificate", {"initials": True}),
+                  ("payslip", {"month": 0})]},
+        {"docs": [("aadhaar", {}), ("pan", {"dob_shift": -30}), ("bgv_consent", {})]},
+        {"docs": [("aadhaar", {}), ("passport", {"sibling": True}), ("10th_certificate", {})]},
+        {"middle": True, "docs": [("aadhaar", {}), ("pan", {"drop_middle": True}), ("10th_certificate", {}),
+                                  ("driving_license", {"surname_first": True})]},
+        {"docs": [("aadhaar", {}), ("pan", {}), ("10th_certificate", {"other_person": True})]},
+    ],
 }
+MIDDLE_M = ["Kumar", "Pal", "Mohan", "Raj"]
+MIDDLE_F = ["Kaur", "Devi", "Rani", "Kumari"]
 
 FIRST_M = ["Aarav", "Rohan", "Kabir", "Arjun", "Nikhil", "Harpreet", "Farhan", "Joseph", "Vivek", "Siddharth"]
 FIRST_F = ["Ananya", "Diya", "Ishita", "Kavya", "Meera", "Simran", "Zoya", "Gurleen", "Neha", "Tanvi"]
@@ -255,14 +278,34 @@ def scan(pdf_bytes, rng):
     return out.tobytes()
 
 
+def swapped_day_month(d):
+    """03/07 -> 07/03 when that is a real, different date; otherwise the next day."""
+    if d.day <= 12 and d.day != d.month:
+        return date(d.year, d.day, d.month)
+    return d + timedelta(days=1)
+
+
 def build_document(person, template, opts, variant, other):
     p = copy.copy(person)
+    middle = getattr(person, "middle", None)
     if opts.get("other_person"):
         p.doc_name, p.doc_dob = other.name, other.dob
+    if opts.get("sibling"):  # same surname and family, different first name and DOB
+        names = FIRST_M if person.gender == "Male" else FIRST_F
+        p.doc_name = f"{names[(names.index(person.first) + 1) % len(names)]} {person.last}"
+        p.doc_dob = other.dob
     if opts.get("dob_shift"):
         p.doc_dob = person.dob + timedelta(days=opts["dob_shift"])
+    if opts.get("dob_swap"):
+        p.doc_dob = swapped_day_month(person.dob)
     if opts.get("initials"):
         p.doc_name = f"{person.first[0]}. {person.last}"
+    if opts.get("drop_middle"):
+        p.doc_name = f"{person.first} {person.last}"
+    if opts.get("middle_initial") and middle:
+        p.doc_name = f"{person.first} {middle[0]}. {person.last}"
+    if opts.get("surname_first"):
+        p.doc_name = f"{person.last} {person.first}" + (f" {middle}" if middle else "")
 
     fn, _ = TEMPLATES[template]
     if template == "payslip":
@@ -279,17 +322,28 @@ def main():
 
     for split, scenarios in SCENARIOS.items():
         os.makedirs(os.path.join(OUT_DIR, split), exist_ok=True)
-        for docs in scenarios:
+        if split == "consistency":
+            rng = random.Random(SEED + 1)  # own stream: adding this split changes nothing above
+        for item in scenarios:
+            docs = item["docs"] if isinstance(item, dict) else item
             idx += 1
             person = make_person(rng, idx)
             other = make_person(rng, 900 + idx)  # someone else, for planted mismatches
+            if isinstance(item, dict) and item.get("middle"):
+                person.middle = rng.choice(MIDDLE_M if person.gender == "Male" else MIDDLE_F)
+                person.name = person.doc_name = f"{person.first} {person.middle} {person.last}"
             cid = f"{split.upper()}{idx:02d}"
             combined = fitz.open()
             documents, flags = [], []
 
             for n, (template, opts) in enumerate(docs):
                 _, n_variants = TEMPLATES[template]
-                variant = 0 if split == "dev" else rng.randint(1, n_variants - 1)
+                if split == "dev":
+                    variant = 0
+                elif split == "test":
+                    variant = rng.randint(1, n_variants - 1)
+                else:
+                    variant = rng.randint(0, n_variants - 1)
                 pages, truth = build_document(person, template, opts, variant, other)
                 scanned = rng.random() < SCAN_PROBABILITY
                 pdf_bytes = render_digital(pages)
@@ -301,16 +355,20 @@ def main():
                     combined.insert_pdf(doc_pdf)
                 doc_type = "unknown" if template in NOT_A_DOCUMENT else template
 
-                if opts.get("other_person"):
+                # A document that belongs to someone else is flagged for its name only:
+                # its DOB is someone else's too, so it is not compared.
+                if opts.get("other_person") or opts.get("sibling"):
                     flags.append({"type": "name_mismatch", "doc_type": doc_type})
-                if opts.get("dob_shift"):
+                elif opts.get("dob_shift") or opts.get("dob_swap"):
                     flags.append({"type": "dob_mismatch", "doc_type": doc_type})
 
+                variant_name = next((k for k in ("initials", "drop_middle", "middle_initial", "surname_first")
+                                     if opts.get(k)), None)
                 documents.append({
                     "doc_id": f"{cid}-{n + 1}", "doc_type": doc_type, "template": template,
                     "variant": variant, "scanned": scanned,
                     "pages": list(range(start, len(combined))),
-                    "name_variant": "initials" if opts.get("initials") else None,
+                    "name_variant": variant_name,
                     "fields": truth,
                 })
 

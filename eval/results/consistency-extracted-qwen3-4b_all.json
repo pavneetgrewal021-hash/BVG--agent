@@ -1,0 +1,1415 @@
+{
+  "summary": {
+    "split": "all",
+    "source": "extracted",
+    "model": "qwen3:4b",
+    "candidates": 27,
+    "expected_flags": 10,
+    "legit_name_variants": 10,
+    "exact": {
+      "caught": 10,
+      "missed": 0,
+      "false_flags": 10,
+      "false_flags_on_legit_name_variants": 10,
+      "precision": 0.5,
+      "recall": 1.0,
+      "candidate_review_decision": {
+        "right": 21,
+        "missed": 0,
+        "false_alarm": 6
+      }
+    },
+    "smart": {
+      "caught": 10,
+      "missed": 0,
+      "false_flags": 0,
+      "false_flags_on_legit_name_variants": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "candidate_review_decision": {
+        "right": 27,
+        "missed": 0,
+        "false_alarm": 0
+      }
+    }
+  },
+  "candidates": [
+    {
+      "candidate": "DEV01",
+      "split": "dev",
+      "name": "Harpreet Gill",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Harpreet Gill",
+          "dob": "2000-07-03"
+        },
+        {
+          "doc_type": "pan",
+          "name": "HARPREET GILL",
+          "dob": "2000-07-03"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "HARPREET GILL",
+          "dob": "2000-07-03"
+        },
+        {
+          "doc_type": "12th_certificate",
+          "name": "HARPREET GILL",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "DEV02",
+      "split": "dev",
+      "name": "Meera Joshi",
+      "fields": [
+        {
+          "doc_type": "pan",
+          "name": "MEERA JOSHI",
+          "dob": "1997-01-04"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "MEERA JOSHI",
+          "dob": "1997-01-04"
+        },
+        {
+          "doc_type": "marksheet",
+          "name": "Meera Joshi",
+          "dob": null
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "M. JOSHI",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "degree_certificate"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "degree_certificate",
+            "detail": "'M. JOSHI' vs candidate 'Meera Joshi': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "degree_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "DEV03",
+      "split": "dev",
+      "name": "Rohan Mehta",
+      "fields": [
+        {
+          "doc_type": "offer_letter",
+          "name": "Rohan Mehta",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Rohan Mehta",
+          "dob": null
+        },
+        {
+          "doc_type": "experience_letter",
+          "name": "Rohan Mehta",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "DEV04",
+      "split": "dev",
+      "name": "Gurleen Verma",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Gurleen Verma",
+          "dob": "2000-10-05"
+        },
+        {
+          "doc_type": "pan",
+          "name": "GURLEEN VERMA",
+          "dob": "2001-11-09"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "GURLEEN VERMA",
+          "dob": "2000-10-05"
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Gurleen Verma",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Gurleen Verma",
+          "dob": null
+        },
+        {
+          "doc_type": "bank_statement",
+          "name": "Gurleen Verma",
+          "dob": null
+        }
+      ],
+      "expected": [
+        [
+          "dob_mismatch",
+          "pan"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "pan",
+            "detail": "DOB 2001-11-09 vs 2000-10-05 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "pan",
+            "detail": "DOB 2001-11-09 vs 2000-10-05 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "pan"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "DEV05",
+      "split": "dev",
+      "name": "Harpreet Sandhu",
+      "fields": [
+        {
+          "doc_type": "passport",
+          "name": "HARPREET SANDHU",
+          "dob": "1995-09-13"
+        },
+        {
+          "doc_type": "pan",
+          "name": "HARPREET SANDHU",
+          "dob": "1995-09-13"
+        },
+        {
+          "doc_type": "12th_certificate",
+          "name": "HARPREET SANDHU",
+          "dob": null
+        },
+        {
+          "doc_type": "provisional_certificate",
+          "name": "Harpreet Sandhu",
+          "dob": null
+        },
+        {
+          "doc_type": "bgv_consent",
+          "name": "Harpreet Sandhu",
+          "dob": "1995-09-13"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST06",
+      "split": "test",
+      "name": "Aarav Verma",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Aarav Verma",
+          "dob": "1995-10-18"
+        },
+        {
+          "doc_type": "pan",
+          "name": "AARAV VERMA",
+          "dob": "1995-10-18"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Aarav Verma",
+          "dob": "1995-10-18"
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "Aarav Verma",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST07",
+      "split": "test",
+      "name": "Aarav Nair",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Aarav Nair",
+          "dob": "1996-11-03"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Aarav Nair",
+          "dob": "1994-11-04"
+        },
+        {
+          "doc_type": "marksheet",
+          "name": "Aarav Nair",
+          "dob": null
+        },
+        {
+          "doc_type": "marksheet",
+          "name": "Aarav Nair",
+          "dob": null
+        }
+      ],
+      "expected": [
+        [
+          "dob_mismatch",
+          "10th_certificate"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 1994-11-04 vs 1996-11-03 (aadhaar)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 1994-11-04 vs 1996-11-03 (aadhaar)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "TEST08",
+      "split": "test",
+      "name": "Arjun Khan",
+      "fields": [
+        {
+          "doc_type": "offer_letter",
+          "name": "Arjun Khan",
+          "dob": null
+        },
+        {
+          "doc_type": "relieving_letter",
+          "name": "Arjun Khan",
+          "dob": null
+        },
+        {
+          "doc_type": "form_16",
+          "name": "Arjun Khan",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Arjun Khan",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST09",
+      "split": "test",
+      "name": "Meera Joshi",
+      "fields": [
+        {
+          "doc_type": "pan",
+          "name": "MEERA JOSHI",
+          "dob": "1997-12-09"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Meera Joshi",
+          "dob": "1997-12-09"
+        },
+        {
+          "doc_type": "12th_certificate",
+          "name": "Meera Joshi",
+          "dob": null
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "M. Joshi",
+          "dob": null
+        },
+        {
+          "doc_type": "provisional_certificate",
+          "name": "Meera Joshi",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "degree_certificate"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "degree_certificate",
+            "detail": "'M. Joshi' vs candidate 'Meera Joshi': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "degree_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST10",
+      "split": "test",
+      "name": "Kavya Patel",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Kavya Patel",
+          "dob": "1996-04-26"
+        },
+        {
+          "doc_type": "pan",
+          "name": "KAVYA PATEL",
+          "dob": "1996-04-26"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Kavya Patel",
+          "dob": "1996-04-26"
+        },
+        {
+          "doc_type": "driving_license",
+          "name": "Kavya Patel",
+          "dob": "1996-04-26"
+        },
+        {
+          "doc_type": "bank_statement",
+          "name": "Kavya Patel",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST11",
+      "split": "test",
+      "name": "Neha Patel",
+      "fields": [
+        {
+          "doc_type": "voter_id",
+          "name": "Neha Patel",
+          "dob": null
+        },
+        {
+          "doc_type": "pan",
+          "name": "NEHA PATEL",
+          "dob": "1999-06-26"
+        },
+        {
+          "doc_type": "marksheet",
+          "name": "Neha Patel",
+          "dob": null
+        },
+        {
+          "doc_type": "experience_letter",
+          "name": "Neha Patel",
+          "dob": null
+        },
+        {
+          "doc_type": "court_record",
+          "name": "Neha Patel",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST12",
+      "split": "test",
+      "name": "Simran Sandhu",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17"
+        },
+        {
+          "doc_type": "pan",
+          "name": "SIMRAN SANDHU",
+          "dob": "1999-11-17"
+        },
+        {
+          "doc_type": "bgv_consent",
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17"
+        },
+        {
+          "doc_type": "police_verification",
+          "name": "Simran Sandhu",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST13",
+      "split": "test",
+      "name": "Kavya Reddy",
+      "fields": [
+        {
+          "doc_type": "passport",
+          "name": "KAVYA REDDY",
+          "dob": "2000-08-02"
+        },
+        {
+          "doc_type": "aadhaar",
+          "name": "Gurleen Menon",
+          "dob": "1998-11-08"
+        },
+        {
+          "doc_type": "12th_certificate",
+          "name": "Kavya Reddy",
+          "dob": null
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "Kavya Reddy",
+          "dob": null
+        },
+        {
+          "doc_type": "offer_letter",
+          "name": "Kavya Reddy",
+          "dob": null
+        }
+      ],
+      "expected": [
+        [
+          "name_mismatch",
+          "aadhaar"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "aadhaar",
+            "detail": "'Gurleen Menon' vs candidate 'Kavya Reddy': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "aadhaar"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "aadhaar",
+            "detail": "'Gurleen Menon' vs candidate 'Kavya Reddy': 'gurleen' does not fit any part of 'Kavya Reddy'"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "aadhaar"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "TEST14",
+      "split": "test",
+      "name": "Arjun Sandhu",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Arjun Sandhu",
+          "dob": "1997-03-13"
+        },
+        {
+          "doc_type": "pan",
+          "name": "ARJUN SANDHU",
+          "dob": "1997-03-13"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Arjun Sandhu",
+          "dob": "1997-03-13"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "TEST15",
+      "split": "test",
+      "name": "Tanvi Gill",
+      "fields": [
+        {
+          "doc_type": "12th_certificate",
+          "name": "Tanvi Gill",
+          "dob": null
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "Tanvi Gill",
+          "dob": null
+        },
+        {
+          "doc_type": "marksheet",
+          "name": "Tanvi Gill",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Tanvi Gill",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Tanvi Gill",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY16",
+      "split": "consistency",
+      "name": "Joseph Gupta",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Joseph Gupta",
+          "dob": "1999-07-22"
+        },
+        {
+          "doc_type": "pan",
+          "name": "JOSEPH GUPTA",
+          "dob": "1999-07-22"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Joseph Gupta",
+          "dob": "1999-07-22"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [],
+      "exact": {
+        "flags": [],
+        "predicted": []
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY17",
+      "split": "consistency",
+      "name": "Joseph Mohan Nair",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Joseph Mohan Nair",
+          "dob": "1996-04-07"
+        },
+        {
+          "doc_type": "pan",
+          "name": "JOSEPH NAIR",
+          "dob": "1996-04-07"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "JOSEPH M. NAIR",
+          "dob": "1996-04-07"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "10th_certificate",
+        "pan"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "pan",
+            "detail": "'JOSEPH NAIR' vs candidate 'Joseph Mohan Nair': not identical"
+          },
+          {
+            "type": "name_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "'JOSEPH M. NAIR' vs candidate 'Joseph Mohan Nair': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "10th_certificate"
+          ],
+          [
+            "name_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY18",
+      "split": "consistency",
+      "name": "Arjun Sharma",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Arjun Sharma",
+          "dob": "1996-10-14"
+        },
+        {
+          "doc_type": "pan",
+          "name": "SHARMA ARJUN",
+          "dob": "1996-10-14"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "A. SHARMA",
+          "dob": "1996-10-14"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "10th_certificate",
+        "pan"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "pan",
+            "detail": "'SHARMA ARJUN' vs candidate 'Arjun Sharma': not identical"
+          },
+          {
+            "type": "name_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "'A. SHARMA' vs candidate 'Arjun Sharma': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "10th_certificate"
+          ],
+          [
+            "name_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY19",
+      "split": "consistency",
+      "name": "Kavya Malhotra",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": null,
+          "dob": "1997-06-01"
+        },
+        {
+          "doc_type": "pan",
+          "name": "MEERA MALHOTRA",
+          "dob": "1998-10-14"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "KAVYA MALHOTRA",
+          "dob": "1997-06-01"
+        }
+      ],
+      "expected": [
+        [
+          "name_mismatch",
+          "pan"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "pan",
+            "detail": "'MEERA MALHOTRA' vs candidate 'Kavya Malhotra': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "pan",
+            "detail": "'MEERA MALHOTRA' vs candidate 'Kavya Malhotra': 'meera' does not fit any part of 'Kavya Malhotra'"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "pan"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY20",
+      "split": "consistency",
+      "name": "Siddharth Verma",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Siddharth Verma",
+          "dob": "1999-10-23"
+        },
+        {
+          "doc_type": "pan",
+          "name": "SIDDHARTH VERMA",
+          "dob": "1999-10-23"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Siddharth Verma",
+          "dob": "1999-10-24"
+        }
+      ],
+      "expected": [
+        [
+          "dob_mismatch",
+          "10th_certificate"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 1999-10-24 vs 1999-10-23 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 1999-10-24 vs 1999-10-23 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY21",
+      "split": "consistency",
+      "name": "Simran Iyer",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Siddharth Verma",
+          "dob": "2000-11-25"
+        },
+        {
+          "doc_type": "pan",
+          "name": "SIMRAN IYER",
+          "dob": "1996-06-20"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "SIMRAN IYER",
+          "dob": "1996-06-20"
+        }
+      ],
+      "expected": [
+        [
+          "name_mismatch",
+          "aadhaar"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "aadhaar",
+            "detail": "'Siddharth Verma' vs candidate 'Simran Iyer': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "aadhaar"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "aadhaar",
+            "detail": "'Siddharth Verma' vs candidate 'Simran Iyer': 'siddharth' does not fit any part of 'Simran Iyer'"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "aadhaar"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY22",
+      "split": "consistency",
+      "name": "Tanvi Rani Gupta",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Tanvi Rani Gupta",
+          "dob": "1999-08-11"
+        },
+        {
+          "doc_type": "pan",
+          "name": "TANVI RANI GUPTA",
+          "dob": "1999-08-11"
+        },
+        {
+          "doc_type": "passport",
+          "name": "TANVI RANI GUPTA",
+          "dob": "1999-08-11"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Tanvi Rani Gupta",
+          "dob": "2000-08-10"
+        }
+      ],
+      "expected": [
+        [
+          "dob_mismatch",
+          "10th_certificate"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 2000-08-10 vs 1999-08-11 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "DOB 2000-08-10 vs 1999-08-11 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY23",
+      "split": "consistency",
+      "name": "Rohan Sharma",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "R. Sharma",
+          "dob": "1995-10-02"
+        },
+        {
+          "doc_type": "pan",
+          "name": "ROHAN SHARMA",
+          "dob": "1995-10-02"
+        },
+        {
+          "doc_type": "degree_certificate",
+          "name": "R. SHARMA",
+          "dob": null
+        },
+        {
+          "doc_type": "payslip",
+          "name": "Rohan Sharma",
+          "dob": null
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "aadhaar",
+        "degree_certificate"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "aadhaar",
+            "detail": "'R. Sharma' vs candidate 'Rohan Sharma': not identical"
+          },
+          {
+            "type": "name_mismatch",
+            "doc_type": "degree_certificate",
+            "detail": "'R. SHARMA' vs candidate 'Rohan Sharma': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "aadhaar"
+          ],
+          [
+            "name_mismatch",
+            "degree_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY24",
+      "split": "consistency",
+      "name": "Meera Fernandes",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Meera Fernandes",
+          "dob": "2000-09-23"
+        },
+        {
+          "doc_type": "pan",
+          "name": "MEERA FERNANDES",
+          "dob": "2000-08-24"
+        },
+        {
+          "doc_type": "bgv_consent",
+          "name": "Meera Fernandes",
+          "dob": "2000-09-23"
+        }
+      ],
+      "expected": [
+        [
+          "dob_mismatch",
+          "pan"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "pan",
+            "detail": "DOB 2000-08-24 vs 2000-09-23 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "dob_mismatch",
+            "doc_type": "pan",
+            "detail": "DOB 2000-08-24 vs 2000-09-23 (most documents)"
+          }
+        ],
+        "predicted": [
+          [
+            "dob_mismatch",
+            "pan"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY25",
+      "split": "consistency",
+      "name": "Zoya Fernandes",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Zoya Fernandes",
+          "dob": "2000-12-04"
+        },
+        {
+          "doc_type": "passport",
+          "name": "GURLEEN FERNANDES",
+          "dob": "1999-12-09"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "ZOYA FERNANDES",
+          "dob": "2000-12-04"
+        }
+      ],
+      "expected": [
+        [
+          "name_mismatch",
+          "passport"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "passport",
+            "detail": "'GURLEEN FERNANDES' vs candidate 'Zoya Fernandes': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "passport"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "passport",
+            "detail": "'GURLEEN FERNANDES' vs candidate 'Zoya Fernandes': 'gurleen' does not fit any part of 'Zoya Fernandes'"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "passport"
+          ]
+        ]
+      }
+    },
+    {
+      "candidate": "CONSISTENCY26",
+      "split": "consistency",
+      "name": "Farhan Kumar Menon",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Farhan Kumar Menon",
+          "dob": "1998-10-24"
+        },
+        {
+          "doc_type": "pan",
+          "name": "FARHAN MENON",
+          "dob": "1998-10-24"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "FARHAN KUMAR MENON",
+          "dob": "1998-10-24"
+        },
+        {
+          "doc_type": "driving_license",
+          "name": "Menon Farhan Kumar",
+          "dob": "1998-10-24"
+        }
+      ],
+      "expected": [],
+      "legit_variants": [
+        "driving_license",
+        "pan"
+      ],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "pan",
+            "detail": "'FARHAN MENON' vs candidate 'Farhan Kumar Menon': not identical"
+          },
+          {
+            "type": "name_mismatch",
+            "doc_type": "driving_license",
+            "detail": "'Menon Farhan Kumar' vs candidate 'Farhan Kumar Menon': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "driving_license"
+          ],
+          [
+            "name_mismatch",
+            "pan"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [],
+        "predicted": []
+      }
+    },
+    {
+      "candidate": "CONSISTENCY27",
+      "split": "consistency",
+      "name": "Nikhil Reddy",
+      "fields": [
+        {
+          "doc_type": "aadhaar",
+          "name": "Nikhil Reddy",
+          "dob": "1997-01-28"
+        },
+        {
+          "doc_type": "pan",
+          "name": "NIKHIL REDDY",
+          "dob": "1997-01-28"
+        },
+        {
+          "doc_type": "10th_certificate",
+          "name": "Farhan Das",
+          "dob": "1999-10-24"
+        }
+      ],
+      "expected": [
+        [
+          "name_mismatch",
+          "10th_certificate"
+        ]
+      ],
+      "legit_variants": [],
+      "exact": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "'Farhan Das' vs candidate 'Nikhil Reddy': not identical"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      },
+      "smart": {
+        "flags": [
+          {
+            "type": "name_mismatch",
+            "doc_type": "10th_certificate",
+            "detail": "'Farhan Das' vs candidate 'Nikhil Reddy': 'farhan' does not fit any part of 'Nikhil Reddy'"
+          }
+        ],
+        "predicted": [
+          [
+            "name_mismatch",
+            "10th_certificate"
+          ]
+        ]
+      }
+    }
+  ]
+}

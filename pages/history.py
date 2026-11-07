@@ -81,7 +81,8 @@ def color_status(val):
         "Completed": "background-color: #d4edda; color: #155724",
         "Partial":   "background-color: #fff3cd; color: #856404",
         "Failed":    "background-color: #f8d7da; color: #721c24",
-        "Pending":   "background-color: #e2e3e5; color: #383d41"
+        "Pending":   "background-color: #e2e3e5; color: #383d41",
+        "Needs Review": "background-color: #ffe5d0; color: #8a3b00"
     }
     return colors.get(val, "")
 

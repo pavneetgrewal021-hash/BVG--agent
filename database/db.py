@@ -69,6 +69,19 @@ def create_tables():
     )
     """)
 
+    # Consistency problems found across a candidate's documents. A person marks them reviewed.
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS flags (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        candidate_id TEXT,
+        flag_type TEXT,
+        document_type TEXT,
+        detail TEXT,
+        reviewed INTEGER DEFAULT 0,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )
+    """)
+
     # Older databases were created before documents had uploaded_at.
     # SQLite refuses a CURRENT_TIMESTAMP default when adding a column to a
     # non-empty table, so add it plain; insert_document sets it explicitly.
@@ -172,6 +185,77 @@ def insert_extracted_fields(document_id, candidate_id, document_type, fields):
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     """, [(document_id, candidate_id, document_type, name, f["value"], f["status"], f["source"], f["note"])
           for name, f in fields.items()])
+
+    conn.commit()
+    conn.close()
+
+def get_identity_fields(candidate_id):
+    """[{"doc_type", "name", "dob"}] per stored document, using only values that passed the on-page check."""
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT document_id, document_type, field, value
+    FROM extracted_fields
+    WHERE candidate_id = ? AND field IN ('name', 'dob') AND status IN ('ok', 'invalid')
+    ORDER BY document_id
+    """, (candidate_id,))
+
+    documents = {}
+    for document_id, document_type, field, value in cursor.fetchall():
+        documents.setdefault(document_id, {"doc_type": document_type, "name": None, "dob": None})[field] = value
+
+    conn.close()
+
+    return list(documents.values())
+
+def replace_flags(candidate_id, flags):
+    """Stores this run's flags. Flags a person already reviewed are not raised again. Returns the open flags."""
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("DELETE FROM flags WHERE candidate_id = ? AND reviewed = 0", (candidate_id,))
+    reviewed = set(cursor.execute("""
+        SELECT flag_type, document_type, detail FROM flags WHERE candidate_id = ? AND reviewed = 1
+    """, (candidate_id,)).fetchall())
+
+    open_flags = [f for f in flags if (f["type"], f["doc_type"], f["detail"]) not in reviewed]
+    cursor.executemany("""
+    INSERT INTO flags (candidate_id, flag_type, document_type, detail)
+    VALUES (?, ?, ?, ?)
+    """, [(candidate_id, f["type"], f["doc_type"], f["detail"]) for f in open_flags])
+
+    conn.commit()
+    conn.close()
+
+    return open_flags
+
+def get_open_flags(candidate_id):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT flag_type, document_type, detail
+    FROM flags
+    WHERE candidate_id = ? AND reviewed = 0
+    ORDER BY id
+    """, (candidate_id,))
+
+    data = cursor.fetchall()
+
+    conn.close()
+
+    return data
+
+def mark_flags_reviewed(candidate_id):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("UPDATE flags SET reviewed = 1 WHERE candidate_id = ? AND reviewed = 0", (candidate_id,))
 
     conn.commit()
     conn.close()
