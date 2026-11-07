@@ -10,5 +10,6 @@
   "drive_source_folder": "",
   "classifier": "llm",
   "llm_provider": "ollama",
-  "llm_model": "qwen3:4b"
+  "llm_model": "qwen3:4b",
+  "extract_model": "qwen3:4b"
 }

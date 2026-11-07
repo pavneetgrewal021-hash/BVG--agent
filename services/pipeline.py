@@ -1,10 +1,12 @@
 import os
 
-from database.db import get_candidate_documents, insert_document, update_candidate_status
+from database.db import get_candidate_documents, insert_document, insert_extracted_fields, update_candidate_status
 from services.gmail_service import get_gmail_service, get_attachment_for_candidate
 from services.drive_service import get_pdf_from_drive_folder, upload_candidate_document
 from services.document_classifier import write_temp_pdf, save_documents
 from services.ai_classifier import classify_pdf
+from services.extractor import extract_document
+from services.validators import mask_aadhaar
 
 
 def compute_status(required_docs, uploaded_types):
@@ -34,6 +36,32 @@ def log_page_results(page_results, log):
         if r["keyword_type"] != r["doc_type"]:
             line += f" ⚠️ keyword rules say {r['keyword_type']}: please review"
         log(line)
+
+
+def extract_and_store(document_id, candidate_id, document, settings, log):
+    """Reads name / DOB / number / issue date from one document, logs them and stores them."""
+    extract_settings = {**settings, "llm_model": settings.get("extract_model") or settings.get("llm_model")}
+    result = extract_document(document["doc_type"], document["text"], extract_settings)
+    fields = result["fields"]
+
+    number = fields["doc_number"]
+    if document["doc_type"] == "aadhaar" and number["value"]:
+        number["value"] = mask_aadhaar(number["value"])  # checked in full above, stored masked
+
+    insert_extracted_fields(document_id, candidate_id, document["doc_type"], fields)
+
+    if result["error"]:
+        log(f"⚠️ LLM unavailable for field extraction ({result['error']}) — used regex rules")
+    shown = []
+    for name, f in fields.items():
+        if f["status"] == "ok":
+            shown.append(f"{name} ✓ {f['value']}")
+        elif f["status"] == "invalid":
+            shown.append(f"{name} ⚠️ {f['value']} ({f['note']})")
+        elif f["status"] == "dropped":
+            shown.append(f"{name} ✗ dropped: {f['note']}")
+    log(f"🔎 {document['doc_type']}: " + (" | ".join(shown) or "no fields found"))
+    return fields
 
 
 def document_provenance(document, page_results):
@@ -121,9 +149,10 @@ def run_pipeline(candidate_id, candidate_name, candidate_email, settings, log=pr
                 doc_type=doc_type
             )
             classified_by, confidence = document_provenance(document, page_results)
-            insert_document(candidate_id, doc_type, file_path, classified_by, confidence)
+            document_id = insert_document(candidate_id, doc_type, file_path, classified_by, confidence)
             uploaded_types.append(doc_type)
             log(f"✅ {doc_type} uploaded → {link}")
+            extract_and_store(document_id, candidate_id, document, settings, log)
 
         status, found, missing = compute_status(required_docs, uploaded_types)
         update_candidate_status(candidate_id, status)

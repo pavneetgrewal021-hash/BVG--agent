@@ -1,0 +1,3444 @@
+{
+  "summary": {
+    "split": "test",
+    "model": "qwen3:4b",
+    "prompt_version": "v1",
+    "checks_version": "v2",
+    "documents": 45,
+    "llm_errors": 0,
+    "seconds_per_document": 2.5564565866629385,
+    "methods": {
+      "regex": {
+        "name": {
+          "correct": 24,
+          "wrong": 2,
+          "missing": 19,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 0.5333333333333333,
+          "bad_answer_rate": 0.07692307692307693
+        },
+        "dob": {
+          "correct": 21,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 24,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "doc_number": {
+          "correct": 15,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "issue_date": {
+          "correct": 26,
+          "wrong": 0,
+          "missing": 9,
+          "invented": 0,
+          "correct_null": 10,
+          "accuracy": 0.7428571428571429,
+          "bad_answer_rate": 0.0
+        },
+        "all": {
+          "correct": 86,
+          "wrong": 2,
+          "missing": 28,
+          "invented": 0,
+          "correct_null": 34,
+          "accuracy": 0.7413793103448276,
+          "bad_answer_rate": 0.022727272727272728
+        }
+      },
+      "llm": {
+        "name": {
+          "correct": 45,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "dob": {
+          "correct": 17,
+          "wrong": 4,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 24,
+          "accuracy": 0.8095238095238095,
+          "bad_answer_rate": 0.19047619047619047
+        },
+        "doc_number": {
+          "correct": 14,
+          "wrong": 1,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 0.9333333333333333,
+          "bad_answer_rate": 0.06666666666666667
+        },
+        "issue_date": {
+          "correct": 35,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 10,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "all": {
+          "correct": 111,
+          "wrong": 5,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 34,
+          "accuracy": 0.9568965517241379,
+          "bad_answer_rate": 0.04310344827586207
+        }
+      },
+      "hybrid": {
+        "name": {
+          "correct": 45,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "dob": {
+          "correct": 21,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 24,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "doc_number": {
+          "correct": 15,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 0,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "issue_date": {
+          "correct": 35,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 10,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        },
+        "all": {
+          "correct": 116,
+          "wrong": 0,
+          "missing": 0,
+          "invented": 0,
+          "correct_null": 34,
+          "accuracy": 1.0,
+          "bad_answer_rate": 0.0
+        }
+      }
+    },
+    "bad_llm_values": 5,
+    "removed_or_repaired_by_checks": 5,
+    "correct_values_lost_to_checks": 0
+  },
+  "documents": [
+    {
+      "doc_id": "TEST06-1",
+      "doc_type": "aadhaar",
+      "scanned": false,
+      "truth": {
+        "name": "Aarav Verma",
+        "dob": "1995-10-18",
+        "doc_number": "324335165854",
+        "issue_date": "2025-02-20"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "18/10/1995",
+          "doc_number": "324335165854",
+          "issue_date": "20/02/2025"
+        },
+        "llm": {
+          "name": "Aarav Verma",
+          "dob": "1995-10-18",
+          "doc_number": "324335165854",
+          "issue_date": "2025-02-20"
+        },
+        "hybrid": {
+          "name": "Aarav Verma",
+          "dob": "1995-10-18",
+          "doc_number": "324335165854",
+          "issue_date": "2025-02-20"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST06-2",
+      "doc_type": "pan",
+      "scanned": false,
+      "truth": {
+        "name": "Aarav Verma",
+        "dob": "1995-10-18",
+        "doc_number": "CHMPV2122F",
+        "issue_date": "2014-03-19"
+      },
+      "preds": {
+        "regex": {
+          "name": "AARAV VERMA",
+          "dob": "18/10/1995",
+          "doc_number": "CHMPV2122F",
+          "issue_date": "19/03/2014"
+        },
+        "llm": {
+          "name": "AARAV VERMA",
+          "dob": "18/10/1:1995",
+          "doc_number": "CHMPV2122F",
+          "issue_date": "19/03/2014"
+        },
+        "hybrid": {
+          "name": "AARAV VERMA",
+          "dob": "1995-10-18",
+          "doc_number": "CHMPV2122F",
+          "issue_date": "2014-03-19"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "regex",
+          "note": "filled by regex rules ('18/10/1:1995' is not a date)"
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "wrong",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST06-3",
+      "doc_type": "10th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Aarav Verma",
+        "dob": "1995-10-18",
+        "doc_number": "9360550",
+        "issue_date": "2011-05-15"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "18/10/1995",
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Aarav Verma",
+          "dob": "18/10/1995",
+          "doc_number": "9360550",
+          "issue_date": "15 May 2011"
+        },
+        "hybrid": {
+          "name": "Aarav Verma",
+          "dob": "1995-10-18",
+          "doc_number": "9360550",
+          "issue_date": "2011-05-15"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST06-4",
+      "doc_type": "degree_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Aarav Verma",
+        "dob": null,
+        "doc_number": "44694037",
+        "issue_date": "2018-02-01"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "01/02/2018"
+        },
+        "llm": {
+          "name": "Aarav Verma",
+          "dob": null,
+          "doc_number": "44694037",
+          "issue_date": "2018-02-01"
+        },
+        "hybrid": {
+          "name": "Aarav Verma",
+          "dob": null,
+          "doc_number": "44694037",
+          "issue_date": "2018-02-01"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST07-2",
+      "doc_type": "aadhaar",
+      "scanned": false,
+      "truth": {
+        "name": "Aarav Nair",
+        "dob": "1996-11-03",
+        "doc_number": "249953142370",
+        "issue_date": "2018-11-30"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "03/11/1996",
+          "doc_number": "249953142370",
+          "issue_date": "30/11/2018"
+        },
+        "llm": {
+          "name": "Aarav Nair",
+          "dob": "03/11/1996",
+          "doc_number": "2499 5314 2370",
+          "issue_date": "30/11/2018"
+        },
+        "hybrid": {
+          "name": "Aarav Nair",
+          "dob": "1996-11-03",
+          "doc_number": "249953142370",
+          "issue_date": "2018-11-30"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST07-3",
+      "doc_type": "10th_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "Aarav Nair",
+        "dob": "1994-11-04",
+        "doc_number": "3143954",
+        "issue_date": "2012-05-15"
+      },
+      "preds": {
+        "regex": {
+          "name": "Aarav Nair",
+          "dob": "04/11/1994",
+          "doc_number": null,
+          "issue_date": "15/05/2012"
+        },
+        "llm": {
+          "name": "Aarav Nair",
+          "dob": "04/11/1994",
+          "doc_number": "6180756781",
+          "issue_date": "15/05/2012"
+        },
+        "hybrid": {
+          "name": "Aarav Nair",
+          "dob": "1994-11-04",
+          "doc_number": "6180756781",
+          "issue_date": "2012-05-15"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST07-4",
+      "doc_type": "marksheet",
+      "scanned": true,
+      "truth": {
+        "name": "Aarav Nair",
+        "dob": null,
+        "doc_number": "2014SJ8525",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": "2014SJ8525",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": "2014SJ8525",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST07-5",
+      "doc_type": "marksheet",
+      "scanned": true,
+      "truth": {
+        "name": "Aarav Nair",
+        "dob": null,
+        "doc_number": "2014SJ8525",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": "2014SJ8525",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Aarav Nair",
+          "dob": null,
+          "doc_number": "2014SJ8525",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST08-1",
+      "doc_type": "offer_letter",
+      "scanned": false,
+      "truth": {
+        "name": "Arjun Khan",
+        "dob": null,
+        "doc_number": null,
+        "issue_date": "2019-12-09"
+      },
+      "preds": {
+        "regex": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "09/12/2019"
+        },
+        "hybrid": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2019-12-09"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST08-2",
+      "doc_type": "relieving_letter",
+      "scanned": false,
+      "truth": {
+        "name": "Arjun Khan",
+        "dob": null,
+        "doc_number": "E97837",
+        "issue_date": "2019-11-26"
+      },
+      "preds": {
+        "regex": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2019-11-26"
+        },
+        "hybrid": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2019-11-26"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST08-3",
+      "doc_type": "form_16",
+      "scanned": true,
+      "truth": {
+        "name": "Arjun Khan",
+        "dob": null,
+        "doc_number": "LHUPK8257L",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "the information given above is true.",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": "LHUPK8257L",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": "LHUPK8257L",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "wrong",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST08-4",
+      "doc_type": "payslip",
+      "scanned": false,
+      "truth": {
+        "name": "Arjun Khan",
+        "dob": null,
+        "doc_number": "E97837",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": "E97837",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Arjun Khan",
+          "dob": null,
+          "doc_number": "E97837",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST09-1",
+      "doc_type": "pan",
+      "scanned": false,
+      "truth": {
+        "name": "Meera Joshi",
+        "dob": "1997-12-09",
+        "doc_number": "TCBPJ1081B",
+        "issue_date": "2015-10-03"
+      },
+      "preds": {
+        "regex": {
+          "name": "MEERA JOSHI",
+          "dob": "09/12/1997",
+          "doc_number": "TCBPJ1081B",
+          "issue_date": "03/10/2015"
+        },
+        "llm": {
+          "name": "MEERA JOSHI",
+          "dob": "1997-12-09",
+          "doc_number": "TCBPJ1081B",
+          "issue_date": "2015-10-03"
+        },
+        "hybrid": {
+          "name": "MEERA JOSHI",
+          "dob": "1997-12-09",
+          "doc_number": "TCBPJ1081B",
+          "issue_date": "2015-10-03"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST09-2",
+      "doc_type": "10th_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "Meera Joshi",
+        "dob": "1997-12-09",
+        "doc_number": "2066612",
+        "issue_date": "2013-05-23"
+      },
+      "preds": {
+        "regex": {
+          "name": "Meera Joshi",
+          "dob": "09/12/1997",
+          "doc_number": null,
+          "issue_date": "23/05/2013"
+        },
+        "llm": {
+          "name": "Meera Joshi",
+          "dob": "09/12/1997",
+          "doc_number": "0559328250",
+          "issue_date": "23/05/2013"
+        },
+        "hybrid": {
+          "name": "Meera Joshi",
+          "dob": "1997-12-09",
+          "doc_number": "0559328250",
+          "issue_date": "2013-05-23"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST09-3",
+      "doc_type": "12th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Meera Joshi",
+        "dob": null,
+        "doc_number": "7014657",
+        "issue_date": "2015-05-12"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "12/05/2015"
+        },
+        "llm": {
+          "name": "Meera Joshi",
+          "dob": null,
+          "doc_number": "7014657",
+          "issue_date": "2015-05-12"
+        },
+        "hybrid": {
+          "name": "Meera Joshi",
+          "dob": null,
+          "doc_number": "7014657",
+          "issue_date": "2015-05-12"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST09-4",
+      "doc_type": "degree_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "M. Joshi",
+        "dob": null,
+        "doc_number": "38114620",
+        "issue_date": "2020-02-06"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "06/02/2020"
+        },
+        "llm": {
+          "name": "M. Joshi",
+          "dob": null,
+          "doc_number": "38114620",
+          "issue_date": "2020-02-06"
+        },
+        "hybrid": {
+          "name": "M. Joshi",
+          "dob": null,
+          "doc_number": "38114620",
+          "issue_date": "2020-02-06"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST09-5",
+      "doc_type": "provisional_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Meera Joshi",
+        "dob": null,
+        "doc_number": "2015MY2491",
+        "issue_date": "2019-07-26"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "26/07/2019"
+        },
+        "llm": {
+          "name": "Meera Joshi",
+          "dob": null,
+          "doc_number": "PDC/2019/2015MY2491",
+          "issue_date": "2019-07-26"
+        },
+        "hybrid": {
+          "name": "Meera Joshi",
+          "dob": null,
+          "doc_number": "PDC20192015MY2491",
+          "issue_date": "2019-07-26"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST10-1",
+      "doc_type": "aadhaar",
+      "scanned": false,
+      "truth": {
+        "name": "Kavya Patel",
+        "dob": "1996-04-26",
+        "doc_number": "696567995171",
+        "issue_date": "2020-05-30"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "26/04/1996",
+          "doc_number": "696567995171",
+          "issue_date": "30/05/2020"
+        },
+        "llm": {
+          "name": "Kavya Patel",
+          "dob": "1996-04-26",
+          "doc_number": "696567995171",
+          "issue_date": "2020-05-30"
+        },
+        "hybrid": {
+          "name": "Kavya Patel",
+          "dob": "1996-04-26",
+          "doc_number": "696567995171",
+          "issue_date": "2020-05-30"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST10-2",
+      "doc_type": "pan",
+      "scanned": true,
+      "truth": {
+        "name": "Kavya Patel",
+        "dob": "1996-04-26",
+        "doc_number": "SDLPP9641B",
+        "issue_date": "2015-01-21"
+      },
+      "preds": {
+        "regex": {
+          "name": "KAVYA PATEL",
+          "dob": "26/04/1996",
+          "doc_number": "SDLPP9641B",
+          "issue_date": "21/01/2015"
+        },
+        "llm": {
+          "name": "KAVYA PATEL",
+          "dob": "26/04/1:996",
+          "doc_number": "SDLPP9641B",
+          "issue_date": "21/01/2015"
+        },
+        "hybrid": {
+          "name": "KAVYA PATEL",
+          "dob": "1996-04-26",
+          "doc_number": "SDLPP9641B",
+          "issue_date": "2015-01-21"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "regex",
+          "note": "filled by regex rules ('26/04/1:996' is not a date)"
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "wrong",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST10-3",
+      "doc_type": "10th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Kavya Patel",
+        "dob": "1996-04-26",
+        "doc_number": "6517033",
+        "issue_date": "2012-05-16"
+      },
+      "preds": {
+        "regex": {
+          "name": "Kavya Patel",
+          "dob": "26/04/1996",
+          "doc_number": null,
+          "issue_date": "16/05/2012"
+        },
+        "llm": {
+          "name": "Kavya Patel",
+          "dob": "26/04/1996",
+          "doc_number": "6996538648",
+          "issue_date": "16/05/2012"
+        },
+        "hybrid": {
+          "name": "Kavya Patel",
+          "dob": "1996-04-26",
+          "doc_number": "6996538648",
+          "issue_date": "2012-05-16"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST10-4",
+      "doc_type": "driving_license",
+      "scanned": false,
+      "truth": {
+        "name": "Kavya Patel",
+        "dob": "1996-04-26",
+        "doc_number": "CH10 20156268572",
+        "issue_date": "2015-02-07"
+      },
+      "preds": {
+        "regex": {
+          "name": "Kavya Patel",
+          "dob": "26/04/1996",
+          "doc_number": "CH1020156268572",
+          "issue_date": "07/02/2015"
+        },
+        "llm": {
+          "name": "Kavya Patel",
+          "dob": "26/04/1:996",
+          "doc_number": "CH10 20156268572",
+          "issue_date": "07/02/2015"
+        },
+        "hybrid": {
+          "name": "Kavya Patel",
+          "dob": "1996-04-26",
+          "doc_number": "CH1020156268572",
+          "issue_date": "2015-02-07"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "regex",
+          "note": "filled by regex rules ('26/04/1:996' is not a date)"
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "wrong",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST10-5",
+      "doc_type": "bank_statement",
+      "scanned": false,
+      "truth": {
+        "name": "Kavya Patel",
+        "dob": null,
+        "doc_number": "XXXXXXXX8847",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Kavya Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Kavya Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Kavya Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST11-1",
+      "doc_type": "voter_id",
+      "scanned": true,
+      "truth": {
+        "name": "Neha Patel",
+        "dob": null,
+        "doc_number": "RCU2724329",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": "RCU2724329",
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": "RCU2724329",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": "RCU2724329",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "correct",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "correct",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "correct",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST11-2",
+      "doc_type": "pan",
+      "scanned": true,
+      "truth": {
+        "name": "Neha Patel",
+        "dob": "1999-06-26",
+        "doc_number": "QNWPP9860J",
+        "issue_date": "2017-05-04"
+      },
+      "preds": {
+        "regex": {
+          "name": "NEHA PATEL",
+          "dob": "26/06/1999",
+          "doc_number": "QNWPP9860J",
+          "issue_date": "04/05/2017"
+        },
+        "llm": {
+          "name": "NEHA PATEL",
+          "dob": "26/06/1:1999",
+          "doc_number": "QNWPP9860J",
+          "issue_date": "04/05/2017"
+        },
+        "hybrid": {
+          "name": "NEHA PATEL",
+          "dob": "1999-06-26",
+          "doc_number": "QNWPP9860J",
+          "issue_date": "2017-05-04"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "regex",
+          "note": "filled by regex rules ('26/06/1:1999' is not a date)"
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "wrong",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST11-3",
+      "doc_type": "marksheet",
+      "scanned": false,
+      "truth": {
+        "name": "Neha Patel",
+        "dob": null,
+        "doc_number": "2017UD1317",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": "2017UD1317",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": "2017UD1317",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST11-4",
+      "doc_type": "experience_letter",
+      "scanned": true,
+      "truth": {
+        "name": "Neha Patel",
+        "dob": null,
+        "doc_number": "E49850",
+        "issue_date": "2022-12-28"
+      },
+      "preds": {
+        "regex": {
+          "name": "Neha Patel worked with us as Associate Software Engineer",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "28/12/2022"
+        },
+        "llm": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2022-12-28"
+        },
+        "hybrid": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2022-12-28"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "wrong",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST11-5",
+      "doc_type": "court_record",
+      "scanned": false,
+      "truth": {
+        "name": "Neha Patel",
+        "dob": null,
+        "doc_number": null,
+        "issue_date": "2023-02-05"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2023-02-05"
+        },
+        "hybrid": {
+          "name": "Neha Patel",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2023-02-05"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST12-1",
+      "doc_type": "aadhaar",
+      "scanned": true,
+      "truth": {
+        "name": "Simran Sandhu",
+        "dob": "1999-11-17",
+        "doc_number": "508694329844",
+        "issue_date": "2023-08-03"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "17/11/1999",
+          "doc_number": "508694329844",
+          "issue_date": "03/08/2023"
+        },
+        "llm": {
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17",
+          "doc_number": "508694329844",
+          "issue_date": "2023-08-03"
+        },
+        "hybrid": {
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17",
+          "doc_number": "508694329844",
+          "issue_date": "2023-08-03"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST12-2",
+      "doc_type": "pan",
+      "scanned": true,
+      "truth": {
+        "name": "Simran Sandhu",
+        "dob": "1999-11-17",
+        "doc_number": "QXUPS4165L",
+        "issue_date": "2019-10-14"
+      },
+      "preds": {
+        "regex": {
+          "name": "SIMRAN SANDHU",
+          "dob": "17/11/1999",
+          "doc_number": "QXUPS4165L",
+          "issue_date": "14/10/2019"
+        },
+        "llm": {
+          "name": "SIMRAN SANDHU",
+          "dob": "1999-11-17",
+          "doc_number": "QXUPS4165L",
+          "issue_date": "2019-10-14"
+        },
+        "hybrid": {
+          "name": "SIMRAN SANDHU",
+          "dob": "1999-11-17",
+          "doc_number": "QXUPS4165L",
+          "issue_date": "2019-10-14"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST12-3",
+      "doc_type": "bgv_consent",
+      "scanned": true,
+      "truth": {
+        "name": "Simran Sandhu",
+        "dob": "1999-11-17",
+        "doc_number": null,
+        "issue_date": "2023-12-13"
+      },
+      "preds": {
+        "regex": {
+          "name": "Simran Sandhu",
+          "dob": "17/11/1999",
+          "doc_number": null,
+          "issue_date": "13/12/2023"
+        },
+        "llm": {
+          "name": "Simran Sandhu",
+          "dob": "17/11/1999",
+          "doc_number": null,
+          "issue_date": "13/12/2023"
+        },
+        "hybrid": {
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17",
+          "doc_number": null,
+          "issue_date": "2023-12-13"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST12-4",
+      "doc_type": "10th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Simran Sandhu",
+        "dob": "1999-11-17",
+        "doc_number": "1735720",
+        "issue_date": "2015-05-19"
+      },
+      "preds": {
+        "regex": {
+          "name": "Simran Sandhu",
+          "dob": "17/11/1999",
+          "doc_number": null,
+          "issue_date": "19/05/2015"
+        },
+        "llm": {
+          "name": "Simran Sandhu",
+          "dob": "17/11/1999",
+          "doc_number": "7101362703",
+          "issue_date": "19/05/2015"
+        },
+        "hybrid": {
+          "name": "Simran Sandhu",
+          "dob": "1999-11-17",
+          "doc_number": "7101362703",
+          "issue_date": "2015-05-19"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST12-5",
+      "doc_type": "police_verification",
+      "scanned": true,
+      "truth": {
+        "name": "Simran Sandhu",
+        "dob": null,
+        "doc_number": "888951",
+        "issue_date": "2023-12-23"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Simran Sandhu",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2023-12-23"
+        },
+        "hybrid": {
+          "name": "Simran Sandhu",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2023-12-23"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST13-1",
+      "doc_type": "passport",
+      "scanned": true,
+      "truth": {
+        "name": "Kavya Reddy",
+        "dob": "2000-08-02",
+        "doc_number": "K1765901",
+        "issue_date": "2019-12-05"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "02/08/2000",
+          "doc_number": "K1765901",
+          "issue_date": "05/12/2019"
+        },
+        "llm": {
+          "name": "KAVYA REDDY",
+          "dob": "2000-08-02",
+          "doc_number": "K1765901",
+          "issue_date": "2019-12-05"
+        },
+        "hybrid": {
+          "name": "KAVYA REDDY",
+          "dob": "2000-08-02",
+          "doc_number": "K1765901",
+          "issue_date": "2019-12-05"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST13-2",
+      "doc_type": "aadhaar",
+      "scanned": true,
+      "truth": {
+        "name": "Gurleen Menon",
+        "dob": "1998-11-08",
+        "doc_number": "228524132485",
+        "issue_date": "2018-10-15"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "08/11/1998",
+          "doc_number": "228524132485",
+          "issue_date": "15/10/2018"
+        },
+        "llm": {
+          "name": "Gurleen Menon",
+          "dob": "1998-11-08",
+          "doc_number": "228524132485",
+          "issue_date": "2018-10-15"
+        },
+        "hybrid": {
+          "name": "Gurleen Menon",
+          "dob": "1998-11-08",
+          "doc_number": "228524132485",
+          "issue_date": "2018-10-15"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST13-3",
+      "doc_type": "12th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Kavya Reddy",
+        "dob": null,
+        "doc_number": "6427751",
+        "issue_date": "2018-05-12"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": "6427751",
+          "issue_date": "2018-05-12"
+        },
+        "hybrid": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": "6427751",
+          "issue_date": "2018-05-12"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST13-4",
+      "doc_type": "degree_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "Kavya Reddy",
+        "dob": null,
+        "doc_number": "93226951",
+        "issue_date": "2023-02-12"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "12/02/2023"
+        },
+        "llm": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": "93226951",
+          "issue_date": "2023-02-12"
+        },
+        "hybrid": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": "93226951",
+          "issue_date": "2023-02-12"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST13-5",
+      "doc_type": "offer_letter",
+      "scanned": false,
+      "truth": {
+        "name": "Kavya Reddy",
+        "dob": null,
+        "doc_number": null,
+        "issue_date": "2025-05-17"
+      },
+      "preds": {
+        "regex": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "17/05/2025"
+        },
+        "hybrid": {
+          "name": "Kavya Reddy",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "2025-05-17"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST14-1",
+      "doc_type": "aadhaar",
+      "scanned": false,
+      "truth": {
+        "name": "Arjun Sandhu",
+        "dob": "1997-03-13",
+        "doc_number": "937853042771",
+        "issue_date": "2019-05-26"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "13/03/1997",
+          "doc_number": "937853042771",
+          "issue_date": "26/05/2019"
+        },
+        "llm": {
+          "name": "Arjun Sandhu",
+          "dob": "1997-03-13",
+          "doc_number": "937853042771",
+          "issue_date": "2019-05-26"
+        },
+        "hybrid": {
+          "name": "Arjun Sandhu",
+          "dob": "1997-03-13",
+          "doc_number": "937853042771",
+          "issue_date": "2019-05-26"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST14-3",
+      "doc_type": "pan",
+      "scanned": false,
+      "truth": {
+        "name": "Arjun Sandhu",
+        "dob": "1997-03-13",
+        "doc_number": "DMEPS6352Z",
+        "issue_date": "2016-05-08"
+      },
+      "preds": {
+        "regex": {
+          "name": "ARJUN SANDHU",
+          "dob": "13/03/1997",
+          "doc_number": "DMEPS6352Z",
+          "issue_date": "08/05/2016"
+        },
+        "llm": {
+          "name": "ARJUN SANDHU",
+          "dob": "1997-03-13",
+          "doc_number": "DMEPS635:2Z",
+          "issue_date": "2016-05-08"
+        },
+        "hybrid": {
+          "name": "ARJUN SANDHU",
+          "dob": "1997-03-13",
+          "doc_number": "DMEPS6352Z",
+          "issue_date": "2016-05-08"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "regex",
+          "note": "model said 'DMEPS635:2Z'; replaced by the only valid number on the page"
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "wrong",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "correct",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST14-4",
+      "doc_type": "10th_certificate",
+      "scanned": true,
+      "truth": {
+        "name": "Arjun Sandhu",
+        "dob": "1997-03-13",
+        "doc_number": "2629465",
+        "issue_date": "2013-05-18"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": "13/03/1997",
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Arjun Sandhu",
+          "dob": "13/03/1997",
+          "doc_number": "2629465",
+          "issue_date": "18 May 2013"
+        },
+        "hybrid": {
+          "name": "Arjun Sandhu",
+          "dob": "1997-03-13",
+          "doc_number": "2629465",
+          "issue_date": "2013-05-18"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST15-1",
+      "doc_type": "12th_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "Tanvi Gill",
+        "dob": null,
+        "doc_number": "3555658",
+        "issue_date": "2013-05-22"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "3555658",
+          "issue_date": "2013-05-22"
+        },
+        "hybrid": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "3555658",
+          "issue_date": "2013-05-22"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "missing"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST15-2",
+      "doc_type": "degree_certificate",
+      "scanned": false,
+      "truth": {
+        "name": "Tanvi Gill",
+        "dob": null,
+        "doc_number": "92524573",
+        "issue_date": "2018-02-04"
+      },
+      "preds": {
+        "regex": {
+          "name": null,
+          "dob": null,
+          "doc_number": null,
+          "issue_date": "04/02/2018"
+        },
+        "llm": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "92524573",
+          "issue_date": "2018-02-04"
+        },
+        "hybrid": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "92524573",
+          "issue_date": "2018-02-04"
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "missing",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST15-3",
+      "doc_type": "marksheet",
+      "scanned": false,
+      "truth": {
+        "name": "Tanvi Gill",
+        "dob": null,
+        "doc_number": "2013FL5486",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "2013FL5486",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "2013FL5486",
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST15-4",
+      "doc_type": "payslip",
+      "scanned": false,
+      "truth": {
+        "name": "Tanvi Gill",
+        "dob": null,
+        "doc_number": "E53130",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "E531:30",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "dropped",
+          "source": "llm",
+          "note": "'E531:30' is not on the page"
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    },
+    {
+      "doc_id": "TEST15-5",
+      "doc_type": "payslip",
+      "scanned": false,
+      "truth": {
+        "name": "Tanvi Gill",
+        "dob": null,
+        "doc_number": "E53130",
+        "issue_date": null
+      },
+      "preds": {
+        "regex": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        },
+        "llm": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": "E531:30",
+          "issue_date": null
+        },
+        "hybrid": {
+          "name": "Tanvi Gill",
+          "dob": null,
+          "doc_number": null,
+          "issue_date": null
+        }
+      },
+      "checks": {
+        "name": {
+          "status": "ok",
+          "source": "llm",
+          "note": null
+        },
+        "dob": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        },
+        "doc_number": {
+          "status": "dropped",
+          "source": "llm",
+          "note": "'E531:30' is not on the page"
+        },
+        "issue_date": {
+          "status": "missing",
+          "source": "llm",
+          "note": null
+        }
+      },
+      "outcomes": {
+        "regex": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "llm": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        },
+        "hybrid": {
+          "name": "correct",
+          "dob": "correct_null",
+          "doc_number": "not_scored",
+          "issue_date": "correct_null"
+        }
+      }
+    }
+  ]
+}

@@ -434,7 +434,8 @@ def experience_letter(p, v):
             "Their conduct during this period was good.",
             "Authorised Signatory",
         ]
-    return [lines], fields(p.doc_name, None, p.emp_id, issue)
+    # wording 0 prints no letter date, so there is no issue date to extract
+    return [lines], fields(p.doc_name, None, p.emp_id, issue if v != 0 else None)
 
 
 def relieving_letter(p, v):

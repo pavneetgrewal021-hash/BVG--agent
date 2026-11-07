@@ -117,9 +117,15 @@ classifier = st.radio(
 )
 
 llm_model = st.text_input(
-    "Ollama model",
+    "Ollama model for classifying pages",
     value=settings.get("llm_model", "qwen3:4b"),
     help="Chosen by evaluation: qwen3:4b scored best on the dev set (see eval/README.md)"
+)
+
+extract_model = st.text_input(
+    "Ollama model for reading name / DOB / numbers",
+    value=settings.get("extract_model", llm_model),
+    help="Using the same model as classification avoids swapping models in GPU memory"
 )
 
 if st.button("Test LLM connection"):
@@ -135,6 +141,7 @@ if st.button("💾 Save Settings"):
     settings["file_name_pattern"]    = file_pattern
     settings["classifier"]           = classifier
     settings["llm_model"]            = llm_model
+    settings["extract_model"]        = extract_model
     save_settings(settings)
     st.success("Settings saved successfully!")
 

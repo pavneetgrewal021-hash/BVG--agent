@@ -150,8 +150,9 @@ def group_into_documents(page_results):
             continue
         if r["continues_previous_page"] and documents and documents[-1]["pages"][-1] == r["page"] - 1:
             documents[-1]["pages"].append(r["page"])
+            documents[-1]["text"] += "\n" + r["text"]
         else:
-            documents.append({"doc_type": r["doc_type"], "pages": [r["page"]]})
+            documents.append({"doc_type": r["doc_type"], "pages": [r["page"]], "text": r["text"]})
     return documents
 
 
@@ -162,7 +163,8 @@ def keyword_documents(page_texts):
         doc_type = keyword_classify_text(text)
         if doc_type != "unknown":
             by_type.setdefault(doc_type, []).append(i)
-    return [{"doc_type": t, "pages": p} for t, p in by_type.items()]
+    return [{"doc_type": t, "pages": p, "text": "\n".join(page_texts[i] for i in p)}
+            for t, p in by_type.items()]
 
 
 def classify_pdf(pdf_path, settings, log=print):

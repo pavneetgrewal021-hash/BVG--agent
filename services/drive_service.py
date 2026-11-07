@@ -59,7 +59,8 @@ DEFAULT_SETTINGS = {
     "file_name_pattern": "{name}_{date}_{doc_type}",
     "classifier": "keyword",
     "llm_provider": "ollama",
-    "llm_model": "qwen3:4b"
+    "llm_model": "qwen3:4b",
+    "extract_model": "qwen3:4b"
 }
 
 

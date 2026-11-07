@@ -135,6 +135,69 @@ part of each model runs on the CPU.
   marksheets) are usually merged, because the model says the second continues the first.
   This explains 4 of the 5 test documents that were not recovered.
 
+## Field extraction (Phase 3)
+
+`services/extractor.py` reads **name, date of birth, document number and issue date** from
+each document, and `services/validators.py` checks them with plain code:
+
+- every value must actually be **printed on the page** (dates in any usual format, so a
+  swapped day and month is caught);
+- ID numbers must match their **exact format**: Aadhaar with its Verhoeff check digit, PAN
+  with holder type `P` and the surname initial, passport, licence, EPIC;
+- a DOB must give a plausible age.
+
+A value that fails the on-page or date check is dropped. A value that is on the page but
+breaks a rule is kept and flagged. When the model gives nothing usable, a regex value that
+passes the same checks fills the gap. Aadhaar numbers are checked in full, then stored and
+logged only as `XXXX XXXX 1234`.
+
+```bash
+python eval/run_extraction_eval.py --split test --model qwen3:4b
+```
+
+Documents are given with their true pages and type, so this measures extraction on its own.
+`doc_number` is scored only for ID documents. **Bad answers** = wrong or invented values as a
+share of all values returned. In verification a wrong value is worse than a missing one.
+
+### Results on the test split (45 documents, 116 printed values)
+
+| Method | Accuracy | Bad answers |
+|---|---|---|
+| Regex rules only | 74.1% | 2.3% |
+| qwen3:4b, raw | 95.7% | 4.3% |
+| **qwen3:4b + code checks** (used by the app) | **100.0% (116/116)** | **0.0%** |
+| phi4-mini, raw | 89.7% | 6.3% |
+| phi4-mini + code checks | 98.3% | 1.7% |
+
+On test, the checks removed or repaired every bad qwen3:4b value (5 of 5), and 5 of 7 for
+phi4-mini. They never removed a correct value. On test, raw phi4-mini got 5 of 15 ID
+numbers wrong; with checks it got 15 of 15.
+
+### How the model was chosen (and a process mistake)
+
+1. On dev, with the first checks, qwen3:4b scored 82.0% and phi4-mini 94.0%. qwen3:4b
+   often wrote a stray `:` into values (`HARPRE:ET GILL`, `03/07/2:00`). The cause is the model:
+   it also happens with plain JSON mode and no schema, and with thinking switched off qwen3
+   still writes reasoning into its answer. phi4-mini was picked.
+2. Regex gap filling was then added and measured on dev for phi4-mini only (98.0%).
+3. Both models were run on test.
+4. **Mistake:** step 1 compared the models with different checks. Re-running qwen3:4b on
+   dev with the same checks gave 98.0% for both (bad answers 2.0% vs 3.9%). On that fair dev
+   tie, the app uses **qwen3:4b for both classification and extraction**, so only one model
+   needs to fit in GPU memory. This re-decision was made **after** the test results had been
+   seen. Read the extraction test numbers with that in mind.
+
+### Remaining errors and limits
+
+- phi4-mini on test read a court report's name as "Neha Patel, D/O Imran Patel". It passes
+  the on-page check because every word is printed on the page.
+- A bank statement's period end date was returned as an issue date. Arguably a statement
+  date, but the label says none.
+- An OCR misreading (`Z5813421` read as `25813421`) cannot be repaired. It is flagged as an
+  invalid passport number format.
+- **The regex baseline is biased upward.** Its patterns were written knowing the template
+  labels, which is why it matches on dev (84%) but drops on the unseen test wording (74%).
+
 ## Known limitations (read before quoting numbers)
 
 1. **Synthetic and small.** 74 pages: one page is about 1.4 percentage points on test

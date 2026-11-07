@@ -52,6 +52,23 @@ def create_tables():
     )
     """)
 
+    # One row per field read from a document. status: ok / invalid / dropped / missing.
+    # Aadhaar numbers are stored masked (XXXX XXXX 1234), never in full.
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS extracted_fields (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        document_id INTEGER,
+        candidate_id TEXT,
+        document_type TEXT,
+        field TEXT,
+        value TEXT,
+        status TEXT,
+        source TEXT,
+        note TEXT,
+        FOREIGN KEY (document_id) REFERENCES documents(id)
+    )
+    """)
+
     # Older databases were created before documents had uploaded_at.
     # SQLite refuses a CURRENT_TIMESTAMP default when adding a column to a
     # non-empty table, so add it plain; insert_document sets it explicitly.
@@ -136,9 +153,46 @@ def insert_document(candidate_id, document_type, file_name, classified_by=None, 
     (candidate_id, document_type, file_name, uploaded_at, classified_by, confidence)
     VALUES (?, ?, ?, CURRENT_TIMESTAMP, ?, ?)
     """, (candidate_id, document_type, file_name, classified_by, confidence))
+    document_id = cursor.lastrowid
 
     conn.commit()
     conn.close()
+
+    return document_id
+
+def insert_extracted_fields(document_id, candidate_id, document_type, fields):
+    """fields: {field: {"value", "status", "source", "note"}} as returned by the extractor."""
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.executemany("""
+    INSERT INTO extracted_fields
+    (document_id, candidate_id, document_type, field, value, status, source, note)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    """, [(document_id, candidate_id, document_type, name, f["value"], f["status"], f["source"], f["note"])
+          for name, f in fields.items()])
+
+    conn.commit()
+    conn.close()
+
+def get_extracted_fields(candidate_id):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    SELECT document_type, field, value, status, source, note
+    FROM extracted_fields
+    WHERE candidate_id = ?
+    ORDER BY document_id, id
+    """, (candidate_id,))
+
+    data = cursor.fetchall()
+
+    conn.close()
+
+    return data
 
 def get_candidate_documents(candidate_id):
 

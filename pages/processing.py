@@ -1,5 +1,6 @@
 import streamlit as st
-from database.db import get_all_candidates, get_candidate_documents
+import pandas as pd
+from database.db import get_all_candidates, get_candidate_documents, get_extracted_fields
 from services.drive_service import load_settings
 from services.pipeline import run_pipeline
 
@@ -41,6 +42,15 @@ if existing_docs:
         st.write(f"✅ {doc[2]} — `{doc[3]}`")
 else:
     st.info("No documents received yet.")
+
+extracted = get_extracted_fields(candidate_id)
+if extracted:
+    st.write("**Details read from the documents:**")
+    st.dataframe(
+        pd.DataFrame(extracted, columns=["Document", "Field", "Value", "Check", "Source", "Note"]),
+        width="stretch",
+        hide_index=True
+    )
 
 missing = [d for d in REQUIRED_DOCS if d not in existing_types]
 if missing:
