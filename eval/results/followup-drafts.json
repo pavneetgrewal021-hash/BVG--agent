@@ -1,0 +1,196 @@
+{
+  "summary": {
+    "emails": 18,
+    "sources": {
+      "llm": 18
+    },
+    "llm_pass_first_try": 18,
+    "llm_pass_after_retry": 0,
+    "fallback_to_template": 0,
+    "final_emails_failing_checks": 0,
+    "seconds_per_email": 4.083333333333333,
+    "problem_counts": {}
+  },
+  "rows": [
+    {
+      "id": "DEV02",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 11.7,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Meera,\n\nThank you for your interest in Northwind Analytics. We\u2019ve noted that your Aadhaar card is still required for background verification.\n\nPlease share this document by 12 November 2026 to proceed.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "DEV03",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.3,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Rohan,\n\nThank you for your interest in Northwind Analytics. We require the following documents for background verification:\n- Aadhaar card\n- PAN card\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "DEV04",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.4,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Gurleen,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- PAN card\n\nPlease ensure these are sent by 12 November 2026. If details could not be matched, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "DEV05",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.2,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Harpreet,\n\nThank you for applying to Northwind Analytics. We require the following documents for background verification:\n- Aadhaar card\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST07",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 4.4,
+      "final_check": [],
+      "subject": "Background Verification Documents for Aarav",
+      "body": "Hi Aarav,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Class 10 certificate (details could not be matched)\n- PAN card\n\nPlease check and resend the Class 10 certificate if details were not matched. The PAN card is still missing.\n\nDeadline for submission: 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST08",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.6,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Arjun,\n\nThank you for your interest in Northwind Analytics. To complete your background verification, we require the following documents:\n\n- Aadhaar card\n- PAN card\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST09",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.3,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Meera,\n\nThank you for your interest in Northwind Analytics. We\u2019ve noted that your Aadhaar card is still required for background verification.\n\nPlease share this document by 12 November 2026 to proceed.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST11",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.4,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Neha,\n\nThank you for your interest in Northwind Analytics. We require the following documents for background verification:\n- Aadhaar card\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST13",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 4.8,
+      "final_check": [],
+      "subject": "Background Verification Documents for Kavya",
+      "body": "Hi Kavya,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Aadhaar card (details could not be matched; please check and resend)\n- PAN card\n- Class 10 certificate\n\nThe deadline to submit these is 12 November 2026.\n\nPlease ensure all documents are clear and up-to-date. If you have any questions, feel free to reach out.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "TEST15",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.3,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Tanvi,\n\nThank you for your interest in Northwind Analytics. We require the following documents for background verification:\n- Aadhaar card\n- PAN card\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY19",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.6,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Kavya,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- PAN card\n\nPlease ensure these are sent by 12 November 2026. If details could not be matched, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY20",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.5,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Siddharth,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026. If details could not be matched, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY21",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.4,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Simran,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Aadhaar card\n\nPlease ensure these are sent by 12 November 2026. If there\u2019s a discrepancy, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY22",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.6,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Tanvi,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026. If details could not be matched, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY23",
+      "action": "request_documents",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.1,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Rohan,\n\nThank you for your interest in Northwind Analytics. We\u2019ve noted that your Class 10 certificate is still required for background verification.\n\nPlease share this document by 12 November 2026 to proceed.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY24",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.9,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Meera,\n\nThank you for applying to Northwind Analytics. We\u2019ve noted that your PAN card details could not be matched with our records. Could you please check and resend this document?\n\nAdditionally, your Class 10 certificate is still missing. Please provide this by 12 November 2026 to proceed.\n\nWe appreciate your prompt attention to these items.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY25",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 4.4,
+      "final_check": [],
+      "subject": "Background Verification Documents for Zoya",
+      "body": "Hi Zoya,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- passport\n- PAN card\n\nThe passport details could not be matched with our records. Please check and resend if needed.\n\nThe PAN card is still missing. Kindly share this document by 12 November 2026.\n\nWe appreciate your prompt attention to this.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    },
+    {
+      "id": "CONSISTENCY27",
+      "action": "request_clarification",
+      "source": "llm",
+      "problems": [],
+      "seconds": 3.6,
+      "final_check": [],
+      "subject": "Background Verification Documents",
+      "body": "Hi Nikhil,\n\nThank you for applying to Northwind Analytics. To complete your background verification, we need the following documents:\n\n- Class 10 certificate\n\nPlease ensure these are sent by 12 November 2026. If details could not be matched, kindly check and resubmit.\n\nBest regards,\nPriya Sharma\nHR Team\nNorthwind Analytics"
+    }
+  ]
+}

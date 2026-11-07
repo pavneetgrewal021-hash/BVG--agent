@@ -11,5 +11,10 @@
   "classifier": "llm",
   "llm_provider": "ollama",
   "llm_model": "qwen3:4b",
-  "extract_model": "qwen3:4b"
+  "extract_model": "qwen3:4b",
+  "company_name": "",
+  "hr_signature": "HR Team",
+  "hr_email": "",
+  "max_followups": 2,
+  "followup_deadline_days": 5
 }

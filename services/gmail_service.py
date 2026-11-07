@@ -1,24 +1,39 @@
 import base64
 import os
+from email.message import EmailMessage
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-import os
 
+# gmail.compose lets the app create drafts for follow-up emails. It cannot read other
+# mail beyond gmail.readonly, and the app never calls send: a person sends from Gmail.
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/gmail.compose',
     'https://www.googleapis.com/auth/drive.file'
 ]
 
+def load_credentials():
+    """token.json if it grants every scope in SCOPES; None if the user must sign in again."""
+    if not os.path.exists("token.json"):
+        return None
+    # Load with the scopes stored in the file (not SCOPES), so has_scopes sees what was really granted
+    creds = Credentials.from_authorized_user_file("token.json")
+    if not creds.has_scopes(SCOPES):
+        return None  # e.g. a token from before gmail.compose was added: ask for consent again
+    if not creds.valid and creds.expired and creds.refresh_token:
+        try:
+            creds.refresh(Request())
+        except Exception:
+            return None  # refresh refused (e.g. access revoked): sign in again instead of crashing
+        with open("token.json", "w") as token:
+            token.write(creds.to_json())
+    return creds
+
 def get_gmail_service():
 
-    creds = None
-
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file(
-            "token.json",
-            SCOPES
-        )
+    creds = load_credentials()
 
     if not creds:
 
@@ -39,6 +54,21 @@ def get_gmail_service():
     )
 
     return service
+def create_draft(service, to, subject, body):
+    """Creates a Gmail draft (not sent). Returns the draft id."""
+    message = EmailMessage()
+    message["To"] = to
+    message["Subject"] = subject
+    message.set_content(body)
+    raw = base64.urlsafe_b64encode(message.as_bytes()).decode()
+
+    draft = service.users().drafts().create(
+        userId="me",
+        body={"message": {"raw": raw}}
+    ).execute()
+
+    return draft["id"]
+
 def download_pdf_attachments(service):
 
     results = service.users().messages().list(

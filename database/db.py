@@ -69,6 +69,24 @@ def create_tables():
     )
     """)
 
+    # Follow-up emails. status: pending (waiting for a person) / approved (Gmail draft created) / rejected
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS followups (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        candidate_id TEXT,
+        action TEXT,
+        reason TEXT,
+        to_email TEXT,
+        subject TEXT,
+        body TEXT,
+        source TEXT,
+        status TEXT DEFAULT 'pending',
+        gmail_draft_id TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        decided_at TIMESTAMP
+    )
+    """)
+
     # Consistency problems found across a candidate's documents. A person marks them reviewed.
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS flags (
@@ -259,6 +277,70 @@ def mark_flags_reviewed(candidate_id):
 
     conn.commit()
     conn.close()
+
+def insert_followup(candidate_id, action, reason, to_email, subject, body, source):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO followups (candidate_id, action, reason, to_email, subject, body, source)
+    VALUES (?, ?, ?, ?, ?, ?, ?)
+    """, (candidate_id, action, reason, to_email, subject, body, source))
+    followup_id = cursor.lastrowid
+
+    conn.commit()
+    conn.close()
+
+    return followup_id
+
+def get_followups(status=None):
+    """Rows: (id, candidate_id, action, reason, to_email, subject, body, source, status, gmail_draft_id, created_at)"""
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    query = """
+    SELECT id, candidate_id, action, reason, to_email, subject, body, source, status, gmail_draft_id, created_at
+    FROM followups
+    """
+    if status:
+        cursor.execute(query + " WHERE status = ? ORDER BY id", (status,))
+    else:
+        cursor.execute(query + " ORDER BY id DESC")
+
+    data = cursor.fetchall()
+
+    conn.close()
+
+    return data
+
+def decide_followup(followup_id, status, subject=None, body=None, gmail_draft_id=None):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    UPDATE followups
+    SET status = ?, subject = COALESCE(?, subject), body = COALESCE(?, body),
+        gmail_draft_id = ?, decided_at = CURRENT_TIMESTAMP
+    WHERE id = ?
+    """, (status, subject, body, gmail_draft_id, followup_id))
+
+    conn.commit()
+    conn.close()
+
+def count_followups(candidate_id, status):
+
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    cursor.execute("SELECT COUNT(*) FROM followups WHERE candidate_id = ? AND status = ?", (candidate_id, status))
+    count = cursor.fetchone()[0]
+
+    conn.close()
+
+    return count
 
 def get_extracted_fields(candidate_id):
 

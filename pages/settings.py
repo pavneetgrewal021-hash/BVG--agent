@@ -133,6 +133,19 @@ if st.button("Test LLM connection"):
     (st.success if ok else st.error)(message)
 
 
+st.subheader("📮 Follow-up Emails")
+st.caption("Used by the Outbox. Emails are only ever created as Gmail drafts for a person to send.")
+
+company_name = st.text_input("Company name (shown in emails)", value=settings.get("company_name", ""))
+hr_signature = st.text_input("Sign emails as", value=settings.get("hr_signature", "HR Team"))
+hr_email = st.text_input("HR email for escalations", value=settings.get("hr_email", ""))
+col_a, col_b = st.columns(2)
+followup_deadline_days = col_a.number_input("Days the candidate gets to reply", min_value=1, max_value=30,
+                                            value=int(settings.get("followup_deadline_days", 5)))
+max_followups = col_b.number_input("Escalate to HR after this many follow-ups", min_value=1, max_value=10,
+                                   value=int(settings.get("max_followups", 2)))
+
+
 if st.button("💾 Save Settings"):
     settings["required_docs"]        = selected_docs
     settings["drive_root_folder"]    = drive_root
@@ -142,6 +155,11 @@ if st.button("💾 Save Settings"):
     settings["classifier"]           = classifier
     settings["llm_model"]            = llm_model
     settings["extract_model"]        = extract_model
+    settings["company_name"]         = company_name
+    settings["hr_signature"]         = hr_signature
+    settings["hr_email"]             = hr_email
+    settings["followup_deadline_days"] = int(followup_deadline_days)
+    settings["max_followups"]        = int(max_followups)
     save_settings(settings)
     st.success("Settings saved successfully!")
 

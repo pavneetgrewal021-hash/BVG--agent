@@ -39,6 +39,22 @@ def _supports_thinking(client, model):
     return _thinking_support[model]
 
 
+def chat_tools(messages, tools, settings, num_ctx=4096, num_predict=300):
+    """One model turn that may call tools. Returns the assistant message (with .tool_calls)."""
+    if settings.get("llm_provider", "ollama") != "ollama":
+        raise LLMError("LLM is switched off in Settings")
+    model = settings.get("llm_model", DEFAULT_MODEL)
+    try:
+        client = _client(settings.get("llm_host", DEFAULT_HOST), settings.get("llm_timeout_s", 60))
+        kwargs = {"model": model, "messages": messages, "tools": tools,
+                  "options": {"temperature": 0, "num_ctx": num_ctx, "num_predict": num_predict}}
+        if _supports_thinking(client, model):
+            kwargs["think"] = False
+        return client.chat(**kwargs).message
+    except Exception as e:
+        raise LLMError(f"{type(e).__name__}: {e}") from e
+
+
 def check_model(settings):
     """(ok, message) for the Settings page: is the server up and the model downloaded?"""
     model = settings.get("llm_model", DEFAULT_MODEL)

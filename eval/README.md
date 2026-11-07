@@ -253,6 +253,67 @@ qwen3:4b plus checks, because extraction got every name and DOB used here right.
 - A person known by their middle name ("Mohan Nair" for "Joseph Mohan Nair") is flagged.
   That is deliberate: a person should check it.
 
+## Follow-up emails and the agent experiment (Phase 5)
+
+`services/followup.py` decides what each candidate still owes and writes the email:
+
+1. **The policy is four plain rules** (`plan_followup`), applied in order:
+   - Chased `max_followups` times and still incomplete: **escalate_to_hr**.
+   - Documents disagree: **request_clarification**.
+   - Required documents missing: **request_documents**.
+   - Otherwise: **none**.
+2. **The local LLM (qwen3:4b) writes candidate emails** from those facts only.
+3. **Code checks every draft.** It must name exactly the requested documents and no
+   others, greet the candidate by first name, and state the deadline. It must not contain
+   ID numbers, accusing or internal words ("fake", "mismatch"...), or any name or DOB read
+   from a flagged document.
+4. A draft that fails gets **one retry** with the problems listed. If it fails again, a
+   **fixed template** is used. Escalations to HR always use the template.
+5. **A person approves every email** in the Outbox page and can edit it first. Approving
+   only creates a **Gmail draft** (scope `gmail.compose`). The app has no send function: a
+   person sends from Gmail.
+
+```bash
+python eval/run_followup_eval.py --part drafts
+python eval/run_followup_eval.py --part agent
+```
+
+There are 45 scenarios: every eval candidate's true documents and planted flags, plus a
+copy of every unfinished candidate that has already been chased twice.
+
+| Part | Result |
+|---|---|
+| LLM-written candidate emails (18) | **18/18 passed every check on the first try**; 0 retries; 0 template fallbacks; 4.1 s/email |
+| Agent deciding the action itself (45) | **1/45 agreed with the policy**; 0 wrong decisions; 44 never decided; 23.9 s/scenario |
+
+### The agent experiment: why the app uses rules
+
+`services/followup_agent.py` gives a model the same policy, four read-only lookup tools and
+`decide()`. There is no tool that sends anything. Measured on this laptop:
+
+- **qwen3:4b** never completed a tool call. With thinking off it still writes its reasoning
+  as plain text and runs out of tokens. With thinking on it reasons for 400+ tokens per step,
+  too slow for a multi-step loop.
+- **phi4-mini** picks the right tool, but writes the call as text instead of Ollama's
+  `tool_calls` field. A text parser was added. Even so, the same prompt at temperature 0 gave
+  different formats on different tries: a parseable call, the tool's own definition re-printed,
+  or only a description of what it intends to do. Partial CPU offload makes outputs non-repeatable.
+
+The failures were safe: the agent never chose a *wrong* action, it just failed to decide.
+The decision here is a 4-rule lookup, so the app keeps the rules. The LLM does what it is
+good at (writing), and code plus a person check its output. Results were rebuilt from the
+console log after the summary step crashed (bug fixed); see `eval/results/followup-agent.json`.
+
+### Limits
+
+- The checks verify facts and safety, not quality. A draft can pass and still be vague
+  (one clarification email did not say clearly *why* the PAN was needed again). This is why
+  a person approves every email.
+- Creating real Gmail drafts was tested only against a stand-in Gmail service. Google
+  credentials were not on the development laptop.
+- The 18 emails were written from the eval candidates' facts, so they are as varied as those
+  situations, no more.
+
 ## Known limitations (read before quoting numbers)
 
 1. **Synthetic and small.** 74 pages: one page is about 1.4 percentage points on test

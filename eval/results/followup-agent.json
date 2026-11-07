@@ -1,0 +1,378 @@
+{
+  "summary": {
+    "note": "Rebuilt from the console log: the original run crashed while summarising (bug fixed in run_followup_eval.py). Agent model phi4-mini via Ollama, prompt and tools as in services/followup_agent.py.",
+    "scenarios": 45,
+    "agree_with_policy": 1,
+    "wrong_decision": 0,
+    "no_decision": 44,
+    "seconds_per_scenario": 23.902222222222225,
+    "expected_actions": {
+      "none": 9,
+      "request_documents": 8,
+      "escalate_to_hr": 18,
+      "request_clarification": 10
+    }
+  },
+  "rows": [
+    {
+      "id": "DEV01",
+      "expected": "none",
+      "agent": "none",
+      "seconds": 20.2,
+      "tool_calls": 5,
+      "error": null
+    },
+    {
+      "id": "DEV02",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 23.5,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV02-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.5,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV03",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 23.6,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV03-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 24.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV04",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 23.4,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV04-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV05",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 24.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "DEV05-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.5,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST06",
+      "expected": "none",
+      "agent": null,
+      "seconds": 23.6,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST07",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST07-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST08",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 24.2,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST08-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 24.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST09",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 23.6,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST09-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.7,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST10",
+      "expected": "none",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST11",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 24.4,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST11-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.6,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST12",
+      "expected": "none",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST13",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 23.7,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST13-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 22.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST14",
+      "expected": "none",
+      "agent": null,
+      "seconds": 24.4,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST15",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 23.7,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "TEST15-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.7,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY16",
+      "expected": "none",
+      "agent": null,
+      "seconds": 24.6,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY17",
+      "expected": "none",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY18",
+      "expected": "none",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY19",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 23.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY19-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 24.3,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY20",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 24.2,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY20-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY21",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 24.3,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY21-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 25.0,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY22",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 24.4,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY22-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY23",
+      "expected": "request_documents",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY23-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.7,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY24",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY24-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY25",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 24.1,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY25-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY26",
+      "expected": "none",
+      "agent": null,
+      "seconds": 23.8,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY27",
+      "expected": "request_clarification",
+      "agent": null,
+      "seconds": 23.9,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    },
+    {
+      "id": "CONSISTENCY27-chased",
+      "expected": "escalate_to_hr",
+      "agent": null,
+      "seconds": 25.0,
+      "tool_calls": 0,
+      "error": "no decision within the step limit"
+    }
+  ]
+}
