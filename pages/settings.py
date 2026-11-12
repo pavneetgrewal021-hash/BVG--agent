@@ -3,6 +3,7 @@ import json
 import os
 from services.gmail_service import get_gmail_service
 from services.drive_service import get_drive_service, get_or_create_folder
+from services.llm_client import check_model
 
 SETTINGS_FILE = "data/settings.json"
 
@@ -103,12 +104,62 @@ file_pattern = st.text_input(
 st.caption(f"Example folder: **{folder_pattern.replace('{candidate_id}', 'C101').replace('{name}', 'Satwik').replace('{date}', '2026-06-24')}**")
 
 
+st.subheader("🧠 Document Classifier")
+st.caption("The local LLM runs on this machine through Ollama, so documents never leave it. "
+           "If Ollama is not running, pages fall back to the keyword rules automatically.")
+
+classifier = st.radio(
+    "Classify pages with",
+    options=["llm", "keyword"],
+    format_func=lambda c: "Local LLM (Ollama)" if c == "llm" else "Keyword rules",
+    index=0 if settings.get("classifier", "keyword") == "llm" else 1,
+    horizontal=True
+)
+
+llm_model = st.text_input(
+    "Ollama model for classifying pages",
+    value=settings.get("llm_model", "qwen3:4b"),
+    help="Chosen by evaluation: qwen3:4b scored best on the dev set (see eval/README.md)"
+)
+
+extract_model = st.text_input(
+    "Ollama model for reading name / DOB / numbers",
+    value=settings.get("extract_model", llm_model),
+    help="Using the same model as classification avoids swapping models in GPU memory"
+)
+
+if st.button("Test LLM connection"):
+    ok, message = check_model({**settings, "llm_model": llm_model})
+    (st.success if ok else st.error)(message)
+
+
+st.subheader("📮 Follow-up Emails")
+st.caption("Used by the Outbox. Emails are only ever created as Gmail drafts for a person to send.")
+
+company_name = st.text_input("Company name (shown in emails)", value=settings.get("company_name", ""))
+hr_signature = st.text_input("Sign emails as", value=settings.get("hr_signature", "HR Team"))
+hr_email = st.text_input("HR email for escalations", value=settings.get("hr_email", ""))
+col_a, col_b = st.columns(2)
+followup_deadline_days = col_a.number_input("Days the candidate gets to reply", min_value=1, max_value=30,
+                                            value=int(settings.get("followup_deadline_days", 5)))
+max_followups = col_b.number_input("Escalate to HR after this many follow-ups", min_value=1, max_value=10,
+                                   value=int(settings.get("max_followups", 2)))
+
+
 if st.button("💾 Save Settings"):
     settings["required_docs"]        = selected_docs
     settings["drive_root_folder"]    = drive_root
     settings["drive_source_folder"]  = drive_source
     settings["folder_name_pattern"]  = folder_pattern
     settings["file_name_pattern"]    = file_pattern
+    settings["classifier"]           = classifier
+    settings["llm_model"]            = llm_model
+    settings["extract_model"]        = extract_model
+    settings["company_name"]         = company_name
+    settings["hr_signature"]         = hr_signature
+    settings["hr_email"]             = hr_email
+    settings["followup_deadline_days"] = int(followup_deadline_days)
+    settings["max_followups"]        = int(max_followups)
     save_settings(settings)
     st.success("Settings saved successfully!")
 

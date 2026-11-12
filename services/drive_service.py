@@ -1,17 +1,14 @@
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
-from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from google.auth.transport.requests import Request
 from datetime import datetime
 import os
+import re
 import mimetypes
 import json
 
-SCOPES = [
-    'https://www.googleapis.com/auth/gmail.readonly',
-    'https://www.googleapis.com/auth/drive.file'
-]
+# Gmail and Drive share token.json, so they must ask for the same scopes
+from services.gmail_service import SCOPES, load_credentials
 
 DOC_TYPE_FOLDER = {
     "aadhaar":              "Identity",
@@ -55,7 +52,16 @@ DEFAULT_SETTINGS = {
     "required_docs": ["aadhaar", "pan", "10th_certificate"],
     "drive_root_folder": "BGV_Candidates",
     "folder_name_pattern": "{candidate_id}-{name}-{date}",
-    "file_name_pattern": "{name}_{date}_{doc_type}"
+    "file_name_pattern": "{name}_{date}_{doc_type}",
+    "classifier": "keyword",
+    "llm_provider": "ollama",
+    "llm_model": "qwen3:4b",
+    "extract_model": "qwen3:4b",
+    "company_name": "",
+    "hr_signature": "HR Team",
+    "hr_email": "",
+    "max_followups": 2,
+    "followup_deadline_days": 5
 }
 
 
@@ -67,18 +73,13 @@ def load_settings():
 
 
 def get_drive_service():
-    creds = None
-    if os.path.exists("token.json"):
-        creds = Credentials.from_authorized_user_file("token.json", SCOPES)
+    creds = load_credentials()
 
-    if not creds or not creds.valid:
-        if creds and creds.expired and creds.refresh_token:
-            creds.refresh(Request())
-        else:
-            flow = InstalledAppFlow.from_client_secrets_file(
-                "credentials.json", SCOPES
-            )
-            creds = flow.run_local_server(port=0)
+    if not creds:
+        flow = InstalledAppFlow.from_client_secrets_file(
+            "credentials.json", SCOPES
+        )
+        creds = flow.run_local_server(port=0)
         with open("token.json", "w") as token:
             token.write(creds.to_json())
 
@@ -102,8 +103,20 @@ def create_folder(service, folder_name, parent_id=None):
     return folder["id"]
 
 
+def escape_query_value(value):
+    """Escapes a value for a Drive query string, so names like O'Brien don't break it."""
+    return str(value).replace("\\", "\\\\").replace("'", "\\'")
+
+
+def file_name_matches(email_prefix, file_name):
+    """True if email_prefix appears in file_name as a whole token.
+    'raj' matches 'raj_docs.pdf' and 'docs-raj.pdf' but not 'rajesh_docs.pdf'."""
+    pattern = r"(^|[^a-z0-9])" + re.escape(email_prefix.lower()) + r"($|[^a-z0-9])"
+    return re.search(pattern, file_name.lower()) is not None
+
+
 def get_or_create_folder(service, folder_name, parent_id=None):
-    query = f"name='{folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+    query = f"name='{escape_query_value(folder_name)}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
     if parent_id:
         query += f" and '{parent_id}' in parents"
 
@@ -176,7 +189,7 @@ def get_pdf_from_drive_folder(candidate_email, source_folder_name):
         service = get_drive_service()
 
         # Find source folder
-        query = f"name='{source_folder_name}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
+        query = f"name='{escape_query_value(source_folder_name)}' and mimeType='application/vnd.google-apps.folder' and trashed=false"
         results = service.files().list(q=query, fields="files(id, name)").execute()
         folders = results.get("files", [])
 
@@ -194,17 +207,15 @@ def get_pdf_from_drive_folder(candidate_email, source_folder_name):
         if not files:
             return None
 
-       
-        matched_file = None
-        for f in files:
-            if email_prefix.lower() in f["name"].lower():
-                matched_file = f
-                break
+        # Never guess: a wrong match would file another candidate's documents under this one
+        matches = [f for f in files if file_name_matches(email_prefix, f["name"])]
 
-        if not matched_file:
-            matched_file = files[0]
+        if len(matches) != 1:
+            print(f"Drive source: {len(matches)} files match '{email_prefix}', expected exactly 1")
+            return None
 
-      
+        matched_file = matches[0]
+
         request = service.files().get_media(fileId=matched_file["id"])
         file_bytes = io.BytesIO()
         downloader = MediaIoBaseDownload(file_bytes, request)

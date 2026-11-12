@@ -39,41 +39,6 @@ def get_candidate_documents(candidate_id):
     conn.close()
     return data
 
-def create_batch_tables():
-    conn = get_connection()
-    cursor = conn.cursor()
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batches (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            batch_name TEXT,
-            uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            total_candidates INTEGER DEFAULT 0,
-            completed INTEGER DEFAULT 0,
-            partial INTEGER DEFAULT 0,
-            failed INTEGER DEFAULT 0
-        )
-    """)
-
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS batch_candidates (
-            batch_id INTEGER,
-            candidate_id TEXT,
-            FOREIGN KEY (batch_id) REFERENCES batches(id)
-        )
-    """)
-
-
-    try:
-        cursor.execute("ALTER TABLE documents ADD COLUMN uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-    except:
-        pass
-
-    conn.commit()
-    conn.close()
-
-create_batch_tables()
-
 
 st.title("📜 Batch History")
 
@@ -116,7 +81,8 @@ def color_status(val):
         "Completed": "background-color: #d4edda; color: #155724",
         "Partial":   "background-color: #fff3cd; color: #856404",
         "Failed":    "background-color: #f8d7da; color: #721c24",
-        "Pending":   "background-color: #e2e3e5; color: #383d41"
+        "Pending":   "background-color: #e2e3e5; color: #383d41",
+        "Needs Review": "background-color: #ffe5d0; color: #8a3b00"
     }
     return colors.get(val, "")
 

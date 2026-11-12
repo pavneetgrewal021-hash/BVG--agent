@@ -1,0 +1,538 @@
+{
+  "summary": {
+    "method": "llm",
+    "model": "qwen3:4b",
+    "split": "dev",
+    "prompt_version": "v2",
+    "candidates": 5,
+    "pages": 27,
+    "page_accuracy": 0.9259259259259259,
+    "page_accuracy_digital": 1.0,
+    "page_accuracy_scanned": 0.8666666666666667,
+    "pages_digital": 12,
+    "pages_scanned": 15,
+    "macro_f1": 0.9047619047619048,
+    "documents": 22,
+    "documents_recovered": 18,
+    "status_accuracy": 1.0,
+    "false_completed": 0,
+    "seconds_per_page": 3.764470007408548,
+    "fallback_pages": 0,
+    "evidence_found_rate": 0.9259259259259259,
+    "calibration": [
+      {
+        "band": "0.00-0.70",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.70-0.90",
+        "pages": 0,
+        "accuracy": null
+      },
+      {
+        "band": "0.90-0.97",
+        "pages": 25,
+        "accuracy": 0.96
+      },
+      {
+        "band": "0.97-1.00",
+        "pages": 2,
+        "accuracy": 0.5
+      }
+    ]
+  },
+  "per_class": {
+    "10th_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "12th_certificate": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 2
+    },
+    "aadhaar": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "bank_statement": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "bgv_consent": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "degree_certificate": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "support": 2
+    },
+    "experience_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "marksheet": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "offer_letter": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 1
+    },
+    "pan": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 4
+    },
+    "passport": {
+      "precision": 1.0,
+      "recall": 0.5,
+      "f1": 0.6666666666666666,
+      "support": 2
+    },
+    "payslip": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 3
+    },
+    "provisional_certificate": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "support": 1
+    },
+    "unknown": {
+      "precision": 0.5,
+      "recall": 1.0,
+      "f1": 0.6666666666666666,
+      "support": 1
+    }
+  },
+  "confusions": [
+    [
+      "degree_certificate",
+      "provisional_certificate",
+      1
+    ],
+    [
+      "passport",
+      "unknown",
+      1
+    ]
+  ],
+  "candidates": [
+    {
+      "candidate": "DEV01",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 24.82,
+      "docs": 4,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "DEV02",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 23.69,
+      "docs": 4,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "DEV03",
+      "true_status": "Failed",
+      "pred_status": "Failed",
+      "seconds": 9.99,
+      "docs": 3,
+      "docs_recovered": 3
+    },
+    {
+      "candidate": "DEV04",
+      "true_status": "Completed",
+      "pred_status": "Completed",
+      "seconds": 18.91,
+      "docs": 6,
+      "docs_recovered": 4
+    },
+    {
+      "candidate": "DEV05",
+      "true_status": "Partial",
+      "pred_status": "Partial",
+      "seconds": 24.23,
+      "docs": 5,
+      "docs_recovered": 4
+    }
+  ],
+  "pages": [
+    {
+      "candidate": "DEV01",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Government of India Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV01",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "DEV01",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Permanent Account Number Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV01",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Central Board of Secondary Education Secondary School Examination, 2016 Marks Statement cum Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV01",
+      "page": 4,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Central Board of Secondary Education Senior School Certificate Examination, 2018 Marks Statement cum Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 0,
+      "true": "unknown",
+      "pred": "unknown",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "Dear HR Team, Please find attached my documents for background verification: Aadhaar card, PAN card, 10th certificate and the other documents you asked for. Kindly let me know if anything else is required. Regards, Meera Joshi 9653845355 SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 1,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Permanent Account Number Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 2,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Central Board of Secondary Education Secondary School Examination, 2013 Marks Statement cum Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 3,
+      "true": "marksheet",
+      "pred": "marksheet",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Western Ghats University Grade Card Programme: Bachelor of Technology (Computer Science and Engineering) Semester: III Session: 2017-18 Name: Meera Joshi Roll No.: 2015RK4325",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 4,
+      "true": "degree_certificate",
+      "pred": "degree_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Western Ghats University",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV02",
+      "page": 5,
+      "true": "degree_certificate",
+      "pred": "provisional_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "western ghats university this is to certify that m. joshi having passed the examination held in 2019 has been admitted to the degree of bachelor of technology (computer science and engineering) with first division. given under the seal of the university. convocation held on 07 february 2020 vice-cha",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV03",
+      "page": 0,
+      "true": "offer_letter",
+      "pred": "offer_letter",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Offer of Employment",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV03",
+      "page": 1,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Payslip for the month of September 2021",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV03",
+      "page": 2,
+      "true": "experience_letter",
+      "pred": "experience_letter",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Greyline Consulting LLP TO WHOMEVER IT MAY CONCERN",
+      "evidence_found": false,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 0,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Government of India Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 1,
+      "true": "aadhaar",
+      "pred": "aadhaar",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Unique Identification Authority of India",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Permanent Account Number Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 3,
+      "true": "10th_certificate",
+      "pred": "10th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Central Board of Secondary Education Secondary School Examination, 2016 Marks Statement cum Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 4,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Payslip for the month of February 2025",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 5,
+      "true": "payslip",
+      "pred": "payslip",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Payslip for the month of January 2025",
+      "evidence_found": true,
+      "continues_previous_page": true,
+      "error": null
+    },
+    {
+      "candidate": "DEV04",
+      "page": 6,
+      "true": "bank_statement",
+      "pred": "bank_statement",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "SPECIMEN Unity Federal Bank Account Statement",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 0,
+      "true": "passport",
+      "pred": "passport",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "PASSPORT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 1,
+      "true": "passport",
+      "pred": "unknown",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.99,
+      "evidence": "SPECIMEN - SYNTHETIC TEST DATA - NOT A REAL DOCUMENT",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 2,
+      "true": "pan",
+      "pred": "pan",
+      "scanned": false,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Permanent Account Number Card",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 3,
+      "true": "12th_certificate",
+      "pred": "12th_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Central Board of Secondary Education Senior School Certificate Examination, 2013 Marks Statement cum Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 4,
+      "true": "provisional_certificate",
+      "pred": "provisional_certificate",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Provisional Certificate",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    },
+    {
+      "candidate": "DEV05",
+      "page": 5,
+      "true": "bgv_consent",
+      "pred": "bgv_consent",
+      "scanned": true,
+      "method": "llm",
+      "confidence": 0.95,
+      "evidence": "Background Verification Consent and Authorization Form",
+      "evidence_found": true,
+      "continues_previous_page": false,
+      "error": null
+    }
+  ]
+}

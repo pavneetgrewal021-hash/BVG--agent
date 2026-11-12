@@ -7,5 +7,14 @@
   "drive_root_folder": "BGV_Candidates",
   "folder_name_pattern": "{candidate_id}-{name}-{date}",
   "file_name_pattern": "{name}_{doc_type}",
-  "drive_source_folder": ""
+  "drive_source_folder": "",
+  "classifier": "llm",
+  "llm_provider": "ollama",
+  "llm_model": "qwen3:4b",
+  "extract_model": "qwen3:4b",
+  "company_name": "",
+  "hr_signature": "HR Team",
+  "hr_email": "",
+  "max_followups": 2,
+  "followup_deadline_days": 5
 }

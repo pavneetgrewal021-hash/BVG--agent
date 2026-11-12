@@ -6,6 +6,9 @@
 credentials.json
 token.json
 
+# Generated evaluation PDFs (rebuild with: python eval/generate_dataset.py)
+eval/data/
+
 # Python
 venv/
 __pycache__/
@@ -24,3 +27,7 @@ build/
 # OS files
 .DS_Store
 Thumbs.db
+# Real candidate data: never commit (stays on the laptop only)
+data/*.db
+uploads/
+temp_combined.pdf
